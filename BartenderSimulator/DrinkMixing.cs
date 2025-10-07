@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MohawkTerminalGame;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -36,7 +37,7 @@ namespace Travis
              };
 
             // Randomly pick one
-            var random = new Random();
+            var random = new System.Random();
             var drink = recipes[random.Next(recipes.Count)];
 
             Console.WriteLine($"Customer wants: {drink.Name}\n");
@@ -89,6 +90,10 @@ namespace Travis
                 Console.WriteLine("Pretty good! The customer enjoys it.");
             else
                 Console.WriteLine("Yikes... they send it back.");
+
+            Terminal.WriteLine("Press Enter to continue...");
+            Console.ReadLine();
+            Terminal.Clear();
         }
     }
     }

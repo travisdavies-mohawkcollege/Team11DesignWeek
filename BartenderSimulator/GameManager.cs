@@ -100,22 +100,53 @@ namespace Travis
         public void ServeRegular()
         {
             //Serve The Regular - Game State 2
+            //Intro to Character and First Drink Mini Game
             Terminal.Clear();
             Terminal.WriteLine("You approach The Regular, who is already nursing a beer.");
             Terminal.WriteLine("\"Hey " + playerName + ", just the usual,\" they say with a nod.");
             mixing.MixDrink();
             drinkScore = mixing.score;
             if (drinkScore == 100)
+            {
                 Console.WriteLine("Impressive man, you really know how to pour them.");
+            }
             else if (drinkScore >= 60)
+            {
                 Console.WriteLine("Not bad. Could still use some work though.");
+            }
             else
+            {
                 Console.WriteLine("Do you even know how to pour? What the hell was that?");
-
-
+            }
+            RegularContinued();
         }
 
-
+        public void RegularContinued()
+        {
+            //Next Dialogue Segment, with a choice
+            Terminal.WriteLine("\"Thanks, " + playerName + ". This hits the spot. You know, you're pretty good at this bartending thing.\"");
+            Terminal.WriteLine("How do you respond?");
+            Terminal.WriteLine("1. \"Thanks! I've had some practice.\"");
+            Terminal.WriteLine("2. \"Just doing my job.\"");
+            Terminal.WriteLine("3. \"Something flirty\"");
+            Terminal.WriteLine("Enter the number of your response:");
+            string responseChoice = Terminal.ReadLine();
+            switch (responseChoice)
+            {
+                case "1":
+                    Terminal.WriteLine("\"Well, it shows! Keep it up, " + playerName + ".\"");
+                    break;
+                case "2":
+                    Terminal.WriteLine("\"Humble too, I like that. You're going to do great here, " + playerName + ".\"");
+                    break;
+                case "3":
+                    Terminal.WriteLine("\"Haha, you're quite the charmer, " + playerName + ". Maybe I'll stick around for a while.\"");
+                    break;
+                default:
+                    Terminal.WriteLine("Invalid choice. Please try again.");
+                    RegularContinued();
+                    break;
+            }
 
     }
 
