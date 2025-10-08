@@ -189,7 +189,7 @@ namespace Travis
             Terminal.WriteLine("In the dim corner, Patron1 sits alone, cloaked in shadow.");
             Terminal.WriteLine("\"You seem... different from the others. Why are you here, really?\"");
             Terminal.WriteLine("How do you respond?");
-            Terminal.WriteLine("1. \"What's it to you?\"");
+            Terminal.WriteLine("1. \"What's it to you, buddy?\"");
             Terminal.WriteLine("2. \"Maybe I like listening to people’s stories.\"");
             Terminal.WriteLine("3. \"Why do you ask?\"");
             string responseChoice = Terminal.ReadLine();
