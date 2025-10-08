@@ -23,6 +23,7 @@ namespace Travis
     {
 
         public int score = 0;
+        public Drink drink;
 
         public void MixDrink()
         {
@@ -68,7 +69,7 @@ namespace Travis
             foreach (var ing in allIngredients)
                 Console.WriteLine($"- {ing}");
 
-            Console.WriteLine("\nType ingredients one by one (type 'done' when finished, capitals matter):");
+            Console.WriteLine("\nType an ingredient, then hit enter. Type 'done' when finished adding ingredients, and hit enter. Capitals matter for both ingredients and 'done'.):");
 
             var playerMix = new List<string>();
             while (true)
