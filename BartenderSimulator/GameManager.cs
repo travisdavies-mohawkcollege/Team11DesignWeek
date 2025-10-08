@@ -91,6 +91,8 @@ namespace Travis
                     if (patron1Served)
                     {
                         Terminal.WriteLine("You've already served Patron1. Please choose another customer.");
+                        Terminal.WriteLine("Press Enter to continue...");
+                        Console.ReadLine();
                         CustomerSelection();
                         return;
                     }
@@ -100,6 +102,8 @@ namespace Travis
                     if (patron2Served)
                     {
                         Terminal.WriteLine("You've already served Patron2. Please choose another customer.");
+                        Terminal.WriteLine("Press Enter to continue...");
+                        Console.ReadLine();
                         CustomerSelection();
                         return;
                     }
@@ -109,6 +113,8 @@ namespace Travis
                     if (patron3Served)
                     {
                         Terminal.WriteLine("You've already served Patron3. Please choose another customer.");
+                        Terminal.WriteLine("Press Enter to continue...");
+                        Console.ReadLine();
                         CustomerSelection();
                         return;
                     }
@@ -118,6 +124,8 @@ namespace Travis
                     if (patron4Served)
                     {
                         Terminal.WriteLine("You've already served Patron4. Please choose another customer.");
+                        Terminal.WriteLine("Press Enter to continue...");
+                        Console.ReadLine();
                         CustomerSelection();
                         return;
                     }
