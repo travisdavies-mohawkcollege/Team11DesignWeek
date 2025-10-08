@@ -19,8 +19,6 @@ namespace Travis
         }
     }
 
-    
-
     class Mixing
     {
 
@@ -48,7 +46,7 @@ namespace Travis
             foreach (var ing in allIngredients)
                 Console.WriteLine($"- {ing}");
 
-            Console.WriteLine("\nType ingredients one by one (type 'done' when finished):");
+            Console.WriteLine("\nType ingredients one by one (type 'done' when finished, capitals matter):");
 
             var playerMix = new List<string>();
             while (true)
