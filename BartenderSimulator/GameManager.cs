@@ -447,5 +447,176 @@ namespace Travis
             CustomerSelection();
         }
 
+        //====================================================================================================
+        //Experimental Branchs
+        //====================================================================================================
+
+        public void ServePatron5()
+        {
+            Terminal.Clear();
+            Terminal.WriteLine("In the dim corner, Patron4 sits alone, cloaked in shadow.");
+            Terminal.WriteLine("\"You seem... different from the others. Why are you here, really?\"");
+            Terminal.WriteLine("How do you respond?");
+            Terminal.WriteLine("1. \"What's it to you?\"");
+            Terminal.WriteLine("2. \"Maybe I like listening to people’s stories.\"");
+            Terminal.WriteLine("3. \"Why do you ask?\"");
+            string responseChoice = Terminal.ReadLine();
+
+            switch (responseChoice)
+            {
+                case "1":
+                    //path 1
+                    Terminal.WriteLine("\"Calm down. I was just making conversation.\"");
+                    Patron5Path1();
+                    break;
+                case "2":
+                    //path 2
+                    Terminal.WriteLine("\"A noble pursuit. But be careful — not every story ends well.\"");
+                    break;
+                case "3":
+                    //path 3
+                    Terminal.WriteLine("\"Curiosity can be dangerous. Remember that.\"");
+
+                    break;
+                default:
+                    Terminal.WriteLine("Invalid choice. Please try again.");
+                    ServePatron5();
+                    return;
+            }
+
+
+            
+        }
+
+        public void Patron5BadEnd()
+        {
+            //Bad Ending Dialogue.
+            Terminal.WriteLine("\"You should not have asked that question.\"");
+            Terminal.WriteLine("The figure stands, revealing a face scarred and weary. \"Some truths are better left unknown.\"");
+            Terminal.WriteLine("Before you can react, they vanish into the shadows, leaving you with a chilling silence.");
+            Terminal.WriteLine("Press Enter to continue...");
+            Console.ReadLine();
+        }
+
+        public void Patron5Path1()
+        {
+            //Path 1 Dialogue
+            Terminal.WriteLine("Is this how you treat all your customers?");
+            Terminal.WriteLine("\"So, tell me barkeep. Why are you really here?\"");
+            Terminal.WriteLine("How do you respond?");
+            Terminal.WriteLine("1. \"Sorry, it's been a rough night. Truth is, I'm saving up to leave this dump.\"");
+            Terminal.WriteLine("2. \"Who do you think you are? You think you're special or something?\"");
+            string responseChoice = Terminal.ReadLine();
+
+            switch (responseChoice)
+            {
+                case "1":
+                    //TO CHOICE 1
+                    Terminal.WriteLine("\"I get it, but I have a feeling that isn't the full truth.\"");
+                    Patron5Choice1();
+                    break;
+                case "2":
+                    //BAD END
+                    Terminal.WriteLine("\"A noble pursuit. But be careful — not every story ends well.\"");
+                    break;
+                default:
+                    Terminal.WriteLine("Invalid choice. Please try again.");
+                    ServePatron5();
+                    return;
+            }
+        }
+
+        public void Patron5Path2()
+        {
+
+        }
+
+        public void Patron5Path3()
+        {
+
+        }
+
+        public void Patron5Choice1()
+        {
+            //Choice 1 Dialogue
+            Terminal.WriteLine("You can tell them the truth, or make something up.");
+            Terminal.WriteLine("1. Tell the truth.");
+            Terminal.WriteLine("2. Make something up.");
+            string responseChoice = Terminal.ReadLine();
+            switch (responseChoice)
+            {
+                case "1":
+                    Terminal.WriteLine("\"I see. Sometimes the truth is the heaviest burden.\"");
+                    Patron5Drink1();
+                    break;
+                case "2":
+                    Terminal.WriteLine("\"Lies are easy to tell, but hard to keep. I hope you find what you're looking for.\"");
+                    Patron5BadEnd();
+                    break;
+            }
+        }
+
+        public void Patron5Choice2()
+        {
+
+        }
+
+        public void Patron5Choice3()
+        {
+
+        }
+
+        public void Patron5Drink1()
+        {
+            Terminal.WriteLine("\"Tell you what, make me an Old Fashioned.\"");
+            mixing.MixDrink();
+            drinkScore = mixing.score;
+            if (drinkScore == 100)
+            {
+                Console.WriteLine("\"Excellent. Perhaps we’ll meet again.\"");
+                patron4Reputation += 2;
+            }
+            else if (drinkScore >= 60)
+            {
+                Console.WriteLine("\"Good enough. You’ll improve with time.\"");
+                patron4Reputation += 1;
+            }
+            else
+            {
+                Console.WriteLine("\"Hmm. Still learning, I see.\"");
+                patron4Reputation -= 1;
+            }
+            
+            
+        }
+
+
+
+        public void Patron5Ending()
+        {
+            Terminal.WriteLine("\"One last drink before I disappear into the night.\"");
+            mixing.MixDrink();
+            drinkScore = mixing.score;
+
+            if (drinkScore == 100)
+            {
+                Console.WriteLine("\"Excellent. Perhaps we’ll meet again.\"");
+                patron4Reputation += 2;
+            }
+            else if (drinkScore >= 60)
+            {
+                Console.WriteLine("\"Good enough. You’ll improve with time.\"");
+                patron4Reputation += 1;
+            }
+            else
+            {
+                Console.WriteLine("\"Hmm. Still learning, I see.\"");
+                patron4Reputation -= 1;
+            }
+
+            patron4Served = true;
+            CustomerSelection();
+        }
+
     }
 }
