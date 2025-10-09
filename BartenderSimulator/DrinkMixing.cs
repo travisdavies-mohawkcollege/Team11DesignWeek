@@ -91,7 +91,7 @@ namespace Travis
                 playerMix.Add(input);
             }
 
-            // Scoring
+            // Scoring - New Friendlier System
             int correct = playerMix.Intersect(drink.Ingredients, StringComparer.OrdinalIgnoreCase).Count();
             int missing = drink.Ingredients.Except(playerMix, StringComparer.OrdinalIgnoreCase).Count();
             int extras = playerMix.Except(drink.Ingredients, StringComparer.OrdinalIgnoreCase).Count();
@@ -102,7 +102,12 @@ namespace Travis
             Console.WriteLine($"Extra ingredients: {extras}");
             Terminal.WriteLine("\nMissing ingredients: " + (missing > 0 ? string.Join(", ", drink.Ingredients.Except(playerMix, StringComparer.OrdinalIgnoreCase)) : "None"));
 
-            score = Math.Max(0, (correct * 20) - (extras * 10)); // update class field
+            // Final score calc
+            int totalExpected = drink.Ingredients.Count;
+            score = (int)(((double)correct / totalExpected) * 100);
+            score -= extras * 5;
+            score = Math.Clamp(score, 0, 100);
+
             if (missing == 0 && extras == 0)
                 score = 100;
 
