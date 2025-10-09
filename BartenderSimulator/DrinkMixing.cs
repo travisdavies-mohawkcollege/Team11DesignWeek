@@ -32,7 +32,6 @@ namespace Travis
                 new Drink("Mojito", new List<string>{ "Rum", "Mint", "Sugar", "Lime", "Soda" }),
                 new Drink("Margarita", new List<string>{ "Tequila", "Triple Sec", "Lime Juice", "Salt" }),
                 new Drink("Old Fashioned", new List<string>{ "Whiskey", "Sugar", "Bitters", "Orange Peel" }),
-                new Drink("Shot of Rum", new List<string>{ "Rum" }),
                 new Drink("Whiskey on the Rocks", new List<string>{ "Whiskey", "Ice" }),
                 new Drink("Whiskey Neat", new List<string>{ "Whiskey" }),
                 new Drink("Gin and Tonic", new List<string>{ "Gin", "Tonic Water", "Lime" }),
