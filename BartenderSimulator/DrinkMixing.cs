@@ -21,55 +21,54 @@ namespace Travis
 
     class Mixing
     {
-
         public int score = 0;
         public Drink drink;
 
         public void MixDrink()
         {
-            // Define some drink recipes
+            // Define recipes
             var recipes = new List<Drink>
-             {
-                  new Drink("Mojito", new List<string>{ "Rum", "Mint", "Sugar", "Lime", "Soda" }),
-                  new Drink("Margarita", new List<string>{ "Tequila", "Triple Sec", "Lime Juice", "Salt" }),
-                  new Drink("Old Fashioned", new List<string>{ "Whiskey", "Sugar", "Bitters", "Orange Peel" }),
-                  new Drink("Shot of Rum", new List<string>{ "Rum" }),
-                  new Drink("Whiskey on the Rocks", new List<string>{ "Whiskey", "Ice" }),
-                  new Drink("Gin and Tonic", new List<string>{ "Gin", "Tonic Water", "Lime" }),
-                  new Drink("Pina Colada", new List<string>{ "Rum", "Coconut Cream", "Pineapple Juice" }),
-                  new Drink("Peach Margarita", new List<string>{ "Tequila", "Peach Schnapps", "Lime Juice", "Salt" }),
-
-             };
-
-            //pick a drink to mix
-            Terminal.WriteLine("Available drinks to mix:");
-            foreach(var Drink in recipes)
             {
-                Console.WriteLine(Drink.Name);
-            }
+                new Drink("Mojito", new List<string>{ "Rum", "Mint", "Sugar", "Lime", "Soda" }),
+                new Drink("Margarita", new List<string>{ "Tequila", "Triple Sec", "Lime Juice", "Salt" }),
+                new Drink("Old Fashioned", new List<string>{ "Whiskey", "Sugar", "Bitters", "Orange Peel" }),
+                new Drink("Shot of Rum", new List<string>{ "Rum" }),
+                new Drink("Whiskey on the Rocks", new List<string>{ "Whiskey", "Ice" }),
+                new Drink("Whiskey Neat", new List<string>{ "Whiskey" }),
+                new Drink("Gin and Tonic", new List<string>{ "Gin", "Tonic Water", "Lime" }),
+                new Drink("Pina Colada", new List<string>{ "Rum", "Coconut Cream", "Pineapple Juice" }),
+                new Drink("Peach Margarita", new List<string>{ "Tequila", "Peach Schnapps", "Lime Juice", "Salt" }),
+            };
 
-            Terminal.WriteLine("\nType the name of the drink you want to mix (case sensitive):");
-            Drink drink = null;
+            // Pick a drink
+            Terminal.WriteLine("Available drinks to mix:");
+            foreach (var d in recipes)
+                Console.WriteLine(d.Name);
+
+            Terminal.WriteLine("\nType the name of the drink you want to mix (not case sensitive):");
+
+            drink = null; // use class field
             while (drink == null)
             {
                 Console.Write("> ");
                 var input = Console.ReadLine()?.Trim();
-                drink = recipes.FirstOrDefault(d => d.Name.Equals(input, StringComparison.Ordinal));
+                drink = recipes.FirstOrDefault(d => d.Name.Equals(input, StringComparison.OrdinalIgnoreCase));
+
                 if (drink == null)
                     Console.WriteLine("❌ That drink isn’t available! Try again.");
             }
 
-
-
-
             Console.WriteLine("Available ingredients:");
 
-            var allIngredients = new HashSet<string>(recipes.SelectMany(r => r.Ingredients).OrderBy(x => x));
+            var allIngredients = new HashSet<string>(
+                recipes.SelectMany(r => r.Ingredients).OrderBy(x => x),
+                StringComparer.OrdinalIgnoreCase
+            );
 
             foreach (var ing in allIngredients)
                 Console.WriteLine($"- {ing}");
 
-            Console.WriteLine("\nType an ingredient, then hit enter. Type 'done' when finished adding ingredients, and hit enter. Capitals matter for both ingredients and 'done'.):");
+            Console.WriteLine("\nType an ingredient, then hit enter. Type 'done' when finished adding ingredients, and hit enter (not case sensitive):");
 
             var playerMix = new List<string>();
             while (true)
@@ -92,22 +91,26 @@ namespace Travis
                 playerMix.Add(input);
             }
 
-            // Scoring
-            int correct = playerMix.Intersect(drink.Ingredients).Count();
-            int missing = drink.Ingredients.Except(playerMix).Count();
-            int extras = playerMix.Except(drink.Ingredients).Count();
+            // Scoring - New Friendlier System
+            int correct = playerMix.Intersect(drink.Ingredients, StringComparer.OrdinalIgnoreCase).Count();
+            int missing = drink.Ingredients.Except(playerMix, StringComparer.OrdinalIgnoreCase).Count();
+            int extras = playerMix.Except(drink.Ingredients, StringComparer.OrdinalIgnoreCase).Count();
 
             Console.WriteLine($"\nYou made a {drink.Name} with: {string.Join(", ", playerMix)}");
             Console.WriteLine($"Correct ingredients: {correct}");
             Console.WriteLine($"Missing ingredients: {missing}");
             Console.WriteLine($"Extra ingredients: {extras}");
-            Terminal.WriteLine("\nMissing ingredients: " + (missing > 0 ? string.Join(", ", drink.Ingredients.Except(playerMix)) : "None"));
+            Terminal.WriteLine("\nMissing ingredients: " + (missing > 0 ? string.Join(", ", drink.Ingredients.Except(playerMix, StringComparer.OrdinalIgnoreCase)) : "None"));
 
-            int score = Math.Max(0, (correct * 20) - (extras * 10));
-            if(missing == 0 & extras == 0)
-            {
+            // Final score calc
+            int totalExpected = drink.Ingredients.Count;
+            score = (int)(((double)correct / totalExpected) * 100);
+            score -= extras * 5;
+            score = Math.Clamp(score, 0, 100);
+
+            if (missing == 0 && extras == 0)
                 score = 100;
-            }
+
             Console.WriteLine($"\n⭐ Final score: {score}/100 ⭐");
 
             if (score == 100)
@@ -122,5 +125,4 @@ namespace Travis
             Terminal.Clear();
         }
     }
-    }
-
+}
