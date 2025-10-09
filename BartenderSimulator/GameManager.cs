@@ -127,7 +127,7 @@ namespace Travis
                 case "2":
                     if (patron2Served)
                     {
-                        Terminal.WriteLine("You've already served Patron2. Please choose another customer.");
+                        Terminal.WriteLine("You've already served Lyra. Please choose another customer.");
                         Terminal.WriteLine("Press Enter to continue...");
                         Console.ReadLine();
                         CustomerSelection();
@@ -135,7 +135,7 @@ namespace Travis
                     }
                     if (patron2Left)
                     {
-                        Terminal.WriteLine("Patron2 has already left. Please choose another customer.");
+                        Terminal.WriteLine("Lyra has already left. Please choose another customer.");
                         Terminal.WriteLine("Press Enter to continue...");
                         Console.ReadLine();
                         CustomerSelection();
@@ -146,7 +146,7 @@ namespace Travis
                 case "3":
                     if (patron3Served)
                     {
-                        Terminal.WriteLine("You've already served Patron3. Please choose another customer.");
+                        Terminal.WriteLine("You've already served Kael. Please choose another customer.");
                         Terminal.WriteLine("Press Enter to continue...");
                         Console.ReadLine();
                         CustomerSelection();
@@ -154,7 +154,7 @@ namespace Travis
                     }
                     if (patron3Left)
                     {
-                        Terminal.WriteLine("Patron3 has already left. Please choose another customer.");
+                        Terminal.WriteLine("Kael has already left. Please choose another customer.");
                         Terminal.WriteLine("Press Enter to continue...");
                         Console.ReadLine();
                         CustomerSelection();
