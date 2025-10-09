@@ -23,10 +23,10 @@ namespace Travis
         int currentGameState = 0; //Variable to hold current game state
 
         //Patron 1
-        int patron1Reputation = 0;
-        int patron1Tip = 0;
+        int cleaveReputation = 0;
+        int cleaveTip = 0;
         bool patron1Left = false;
-        bool patron1Served = false;
+        bool cleaveServed = false;
         //Patron 2
         int patron2Reputation = 0;
         int patron2Tip = 0;
@@ -57,7 +57,7 @@ namespace Travis
             Program.TerminalExecuteMode = TerminalExecuteMode.ExecuteOnce;
             Program.TerminalInputMode = TerminalInputMode.KeyboardReadAndReadLine;
 
-            Terminal.SetTitle("Junior's");
+            Terminal.SetTitle("The Long Drift");
             Terminal.UseRoboType = true;
             Terminal.RoboTypeIntervalMilliseconds = defaultTextSpeed;
             Terminal.WriteWithWordBreaks = true;
@@ -74,7 +74,7 @@ namespace Travis
         {
             //Intro Sequence - Game State 0
             Terminal.Clear();
-            Terminal.WriteLine("Welcome to Junior's, the only bar in town!");
+            Terminal.WriteLine("Welcome to The Long Drift, the only good bar this side of the solar system!");
             Terminal.WriteLine("You are the new bartender here, and your job is to make drinks for the customers.");
             Terminal.WriteLine("What name do you write on your nametag? (Enter your name and press Enter)");
             playerName = Terminal.ReadLine();
@@ -88,7 +88,7 @@ namespace Travis
             //Customer Selection - Game State 1
             Terminal.Clear();
             Terminal.WriteLine("Four customers are spread across the bar. Who do you want to serve?");
-            Terminal.WriteLine("1. Patron1");
+            Terminal.WriteLine("1. Cleave");
             Terminal.WriteLine("2. Patron2");
             Terminal.WriteLine("3. Patron3");
             Terminal.WriteLine("4. Patron4");
@@ -97,9 +97,9 @@ namespace Travis
             switch (customerChoice)
             {
                 case "1":
-                    if (patron1Served)
+                    if (cleaveServed)
                     {
-                        Terminal.WriteLine("You've already served Patron1. Please choose another customer.");
+                        Terminal.WriteLine("You've already served Cleave. Please choose another customer.");
                         Terminal.WriteLine("Press Enter to continue...");
                         Console.ReadLine();
                         CustomerSelection();
@@ -107,13 +107,13 @@ namespace Travis
                     }
                     if(patron1Left)
                     {
-                        Terminal.WriteLine("Patron1 has already left. Please choose another customer.");
+                        Terminal.WriteLine("Cleave has already left. Please choose another customer.");
                         Terminal.WriteLine("Press Enter to continue...");
                         Console.ReadLine();
                         CustomerSelection();
                         return;
                     }
-                    ServePatron1();
+                    ServeCleave();
                     break;
                 case "2":
                     if (patron2Served)
@@ -180,340 +180,170 @@ namespace Travis
         }
 
         //====================================================================================================
-        //Patron 1
+        // Patron: Cleave “Graveljaw” Murdock - Ex-Mercenary
         //====================================================================================================
 
-        public void ServePatron1()
+        public void ServeCleave()
         {
             Terminal.Clear();
-            Terminal.WriteLine("In the dim corner, Patron1 sits alone, cloaked in shadow.");
-            Terminal.WriteLine("\"You seem... different from the others. Why are you here, really?\"");
+            Terminal.WriteLine("You approach a slab of a man. Steel-jawed, hunched, and twice as unwelcoming");
+            Terminal.WriteLine("Cleave “Graveljaw” Murdock doesn’t look up. Three teeth glint in the low barlight.");
+            Terminal.WriteLine("Some folks say Cleave tips in teeth... if he likes you.");
+            Terminal.WriteLine("\"Unless you're pourin’ fire, don't speak.\"");
             Terminal.WriteLine("How do you respond?");
-            Terminal.WriteLine("1. \"What's it to you, buddy?\"");
-            Terminal.WriteLine("2. \"Maybe I like listening to people’s stories.\"");
-            Terminal.WriteLine("3. \"Why do you ask?\"");
+            Terminal.WriteLine("1. “You look like the kind of man who drinks to remember, not to forget.”");
+            Terminal.WriteLine("2. “What brings a merc to a jazz bar?”");
+            Terminal.WriteLine("3. “I talk less with people who threaten me.”");
+
             string responseChoice = Terminal.ReadLine();
 
             switch (responseChoice)
             {
                 case "1":
-                    Terminal.WriteLine("\"Calm down. I was just making conversation.\"");
-                    patron1Reputation -= 1;
-                    Patron1Path1();
+                    Terminal.WriteLine("\"Sharp call. Neat it is. Back in the war, neat was the only way to drink before a mission.\"");
+                    cleaveReputation += 1;
+                    CleavePath1();
                     break;
                 case "2":
-                    Terminal.WriteLine("\"A noble pursuit. But be careful — not every story ends well.\"");
-                    Patron1Path2();
+                    Terminal.WriteLine("\"Ain’t here for the jazz. I wait. I watch.\"");
+                    CleavePath2();
                     break;
                 case "3":
-                    Terminal.WriteLine("\"Curiosity can be dangerous. Remember that.\"");
-                    Patron1Path3();
+                    Terminal.WriteLine("\"Not smart to mouth off in orbit, bartender.\"");
+                    cleaveReputation -= 2;
+                    CleaveBadEnd();
                     break;
                 default:
                     Terminal.WriteLine("Invalid choice. Please try again.");
-                    ServePatron1();
+                    ServeCleave();
                     return;
             }
         }
 
-        public void Patron1Path1()
+        public void CleavePath1()
         {
-            Terminal.WriteLine("Is this how you treat all your customers?");
-            Terminal.WriteLine("\"So, tell me barkeep. Why are you really here?\"");
-            Terminal.WriteLine("How do you respond?");
-            Terminal.WriteLine("1. \"Sorry, it's been a rough night. Truth is, I'm saving up to leave this dump.\"");
-            Terminal.WriteLine("2. \"Who do you think you are? You think you're special or something?\"");
-            string responseChoice = Terminal.ReadLine();
+            Terminal.WriteLine("He eyes your bottle hand. No tremble. Good.");
+            Terminal.WriteLine("\"Say... you always this sharp, or just lucky today?\"");
+            Terminal.WriteLine("1. “Luck runs dry. Skill stays poured.”");
+            Terminal.WriteLine("2. “I'm just here for tips, old man.”");
 
+            string responseChoice = Terminal.ReadLine();
             switch (responseChoice)
             {
                 case "1":
-                    Terminal.WriteLine("\"I get it, but I have a feeling that isn't the full truth.\"");
-                    Patron1Choice1();
+                    Terminal.WriteLine("\"Heh. Keep that steel. Might tip you somethin’ real.\"");
+                    CleaveDrink();
                     break;
                 case "2":
-                    Terminal.WriteLine("\"You couldn't just leave it alone, huh?\"");
-                    patron1Reputation -= 3;
-                    Patron1BadEnd();
+                    Terminal.WriteLine("\"Then maybe I’ll keep my teeth to myself.\"");
+                    cleaveReputation -= 1;
+                    CleaveDrink();
                     break;
                 default:
                     Terminal.WriteLine("Invalid choice. Please try again.");
-                    Patron1Path1();
+                    CleavePath1();
                     return;
             }
         }
 
-        public void Patron1Path2()
+        public void CleavePath2()
         {
-            Terminal.WriteLine("I would tell you mine, but I wouldn't say it's that interesting.");
-            Terminal.WriteLine("\"So, tell me barkeep. Why are you really here?\"");
-            Terminal.WriteLine("How do you respond?");
-            Terminal.WriteLine("1. \"I aspire to be more than a barkeep in a dump like this.\"");
-            Terminal.WriteLine("2. \"Recount some of the hardships that made you wind up here.\"");
-            string responseChoice = Terminal.ReadLine();
+            Terminal.WriteLine("His gaze darkens — not angry, but heavy.");
+            Terminal.WriteLine("\"Lost someone here. Every jazz note's a ghost.”");
+            Terminal.WriteLine("1. “I won’t ask who, but I’ll raise a glass.”");
+            Terminal.WriteLine("2. “A merc crying in his drink. Pathetic.”");
 
+            string responseChoice = Terminal.ReadLine();
             switch (responseChoice)
             {
                 case "1":
-                    Terminal.WriteLine("\"I get it, but I have a feeling that isn't the full truth.\"");
-                    Patron1Choice1();
+                    Terminal.WriteLine("\"Respect. Even silence earns steel here.\"");
+                    cleaveReputation += 1;
+                    CleaveDrink();
                     break;
                 case "2":
-                    Terminal.WriteLine("\"I see... would you care to tell me more?\"");
-                    patron1Reputation += 1;
-                    Patron1Choice2();
+                    Terminal.WriteLine("\"Keep that lip, barkeep. Else I unpin memories.\"");
+                    cleaveReputation -= 2;
+                    CleaveBadEnd();
                     break;
                 default:
                     Terminal.WriteLine("Invalid choice. Please try again.");
-                    Patron1Path2();
+                    CleavePath2();
                     return;
             }
         }
 
-        public void Patron1Path3()
+        public void CleaveDrink()
         {
-            Terminal.WriteLine("I take an interest in people, and barkeeps never disappoint.");
-            Terminal.WriteLine("\"I'm here looking for tips on my lost partner. They got stranded on a supply run to a nearby outpost.\"");
-            Terminal.WriteLine("I've told you my story, care to return the favour?");
-            Terminal.WriteLine("How do you respond?");
-            Terminal.WriteLine("1. \"Tell him some of your struggles.\"");
-            Terminal.WriteLine("2. \"Recall the rumour you overheard patrons in the bar discussing earlier about a distress beacon.\"");
-            string responseChoice = Terminal.ReadLine();
-            switch (responseChoice)
-            {
-                case "1":
-                    Terminal.WriteLine("\"I get it, but I have a feeling that isn't the full truth.\"");
-                    Patron1Choice2();
-                    break;
-                case "2":
-                    Terminal.WriteLine("\"Oh?\"");
-                    Patron1Choice3();
-                    break;
-            }
-        }
-
-        public void Patron1Choice1()
-        {
-            Terminal.WriteLine("You can tell them the truth, or make something up.");
-            Terminal.WriteLine("1. Tell the truth.");
-            Terminal.WriteLine("2. Make something up.");
-            string responseChoice = Terminal.ReadLine();
-            switch (responseChoice)
-            {
-                case "1":
-                    Terminal.WriteLine("\"I see. Sometimes the truth is the heaviest burden.\"");
-                    patron1Reputation += 1;
-                    Patron1Drink1();
-                    break;
-                case "2":
-                    Terminal.WriteLine("\"Lies are easy to tell, but hard to keep. I hope you find what you're looking for.\"");
-                    Patron1BadEnd();
-                    break;
-                default:
-                    Terminal.WriteLine("Invalid choice. Please try again.");
-                    Patron1Choice1();
-                    return;
-            }
-        }
-
-        public void Patron1Choice2()
-        {
-            Terminal.WriteLine("You feel you can trust this stranger. You can tell him your stories or cut the conversation a bit short.");
-            Terminal.WriteLine("1. Tell your stories.");
-            Terminal.WriteLine("2. Cut the conversation short.");
-            string responseChoice = Terminal.ReadLine();
-            switch (responseChoice)
-            {
-                case "1":
-                    Terminal.WriteLine("\"Stories are the threads that weave our lives together. Thank you for sharing.\"");
-                    patron1Reputation += 1;
-                    Patron1Drink2();
-                    break;
-                case "2":
-                    Terminal.WriteLine("\"Sometimes silence speaks louder than words. I won't press for more.\"");
-                    Patron1Drink1();
-                    break;
-                default:
-                    Terminal.WriteLine("Invalid choice. Please try again.");
-                    Patron1Choice2();
-                    return;
-            }
-        }
-
-        public void Patron1Choice3()
-        {
-            Terminal.WriteLine("Have you seriously heard something about a distress beacon?");
-            Terminal.WriteLine("How do you respond?");
-            Terminal.WriteLine("1. \"Yeah, I heard some patrons talking about it earlier. (Share the details extensively)\"");
-            Terminal.WriteLine("2. \"Yeah, I... think... . (Keep it vague)\"");
-            string responseChoice = Terminal.ReadLine();
-            switch (responseChoice)
-            {
-                case "1":
-                    Terminal.WriteLine("\"Information is power. Thank you for trusting me with it.\"");
-                    Patron1GoodEnd();
-                    break;
-                case "2":
-                    Terminal.WriteLine("\"Even a hint can be a lifeline. I appreciate your discretion.\"");
-                    patron1Reputation -= 1;
-                    Patron1Drink2();
-                    break;
-                default:
-                    Terminal.WriteLine("Invalid choice. Please try again.");
-                    Patron1Choice3();
-                    return;
-            }
-        }
-
-        public void Patron1Drink1()
-        {
-            Terminal.WriteLine("\"Tell you what, make me an Old Fashioned.\"");
+            Terminal.WriteLine("\"Whiskey. Neat. No garnish. If there's fruit in there, I find your family.\"");
             mixing.MixDrink();
             drinkScore = mixing.score;
-            if (drinkScore == 100)
+
+            if (drinkScore == 100 && mixing.drink.Name.Equals("Whiskey Neat", StringComparison.OrdinalIgnoreCase))
             {
-                if (mixing.drink.Name == "Old Fashioned")
-                {
-                    Console.WriteLine("\"Excellent. Perhaps we’ll meet again.\"");
-                    patron1Reputation += 2;
-                }
-                else
-                {
-                    Console.WriteLine("\"This isn't an Old Fashioned. But it's well made.\"");
-                    patron1Reputation += 1;
-                }
+                Terminal.WriteLine("\"Perfect. You get a tooth — not from me. From someone who owed me.\"");
+                cleaveReputation += 2;
             }
-            else if (drinkScore >= 60)
+            else if (drinkScore >= 60 && mixing.drink.Name.Equals("Whiskey Neat", StringComparison.OrdinalIgnoreCase))
             {
-                if (mixing.drink.Name == "Old Fashioned")
-                {
-                    Console.WriteLine("\"Good enough. You’ll improve with time.\"");
-                    patron1Reputation += 1;
-                }
-                else
-                {
-                    Console.WriteLine("\"This isn't an Old Fashioned. It's passable, I suppose.\"");
-                    patron1Reputation -= 1;
-                }
+                Terminal.WriteLine("\"Tolerable. Guess even rust shines in the right light.\"");
+                cleaveReputation += 1;
+            }
+            else if (!mixing.drink.Name.Equals("Whiskey Neat", StringComparison.OrdinalIgnoreCase))
+            {
+                Terminal.WriteLine("\"Did I stutter? I said whiskey. Neat.\"");
+                cleaveReputation -= 2;
             }
             else
             {
-                if (mixing.drink.Name == "Old Fashioned")
-                {
-                    Console.WriteLine("\"Hmm. Still learning, I see.\"");
-                    patron1Reputation -= 1;
-                }
-                else
-                {
-                    Console.WriteLine("\"This isn't an Old Fashioned. And it's poorly made.\"");
-                    patron1Reputation -= 2;
-                }
+                Terminal.WriteLine("\"That swill could strip starship paint.\"");
+                cleaveReputation -= 1;
             }
+
+
             Terminal.WriteLine("Press Enter to continue...");
             Console.ReadLine();
 
-            Patron1Ending();
+            CleaveEnding();
         }
 
-        public void Patron1Drink2()
+        public void CleaveBadEnd()
         {
-            Terminal.WriteLine("\"Tell you what, make me a Peach Margarita. It's good to mix it up a little.\"");
-            mixing.MixDrink();
-            drinkScore = mixing.score;
-            if (drinkScore == 100)
-            {
-                if (mixing.drink.Name == "Peach Margarita")
-                {
-                    Console.WriteLine("\"Excellent. Perhaps we’ll meet again.\"");
-                    patron1Reputation += 2;
-                }
-                else
-                {
-                    Console.WriteLine("\"This isn't a Peach Margarita. But it's well made.\"");
-                    patron1Reputation += 1;
-                }
-            }
-            else if (drinkScore >= 60)
-            {
-                if (mixing.drink.Name == "Peach Margarita")
-                {
-                    Console.WriteLine("\"Good enough. You’ll improve with time.\"");
-                    patron1Reputation += 1;
-                }
-                else
-                {
-                    Console.WriteLine("\"This isn't an Old Fashioned. It's passable, I suppose.\"");
-                    patron1Reputation -= 1;
-                }
-            }
-            else
-            {
-                if (mixing.drink.Name == "Peach Margarita")
-                {
-                    Console.WriteLine("\"Hmm. Still learning, I see.\"");
-                    patron1Reputation -= 1;
-                }
-                else
-                {
-                    Console.WriteLine("\"This isn't a Peach Margarita. And it's poorly made.\"");
-                    patron1Reputation -= 2;
-                }
-            }
-
-            Patron1Ending();
-        }
-
-        public void Patron1BadEnd()
-        {
-            Terminal.WriteLine("The figure stands, revealing a face scarred and weary. \"Some truths are better left unknown.\"");
-            Terminal.WriteLine("Before you can react, they vanish into the shadows, leaving you with a chilling silence.");
+            Terminal.WriteLine("Cleave tosses a shell casing on the bar.");
+            Terminal.WriteLine("\"For your troubles. Hollow, like that attitude.\"");
+            Terminal.WriteLine("He leaves without another word.");
             Terminal.WriteLine("Press Enter to continue...");
-            patron1Left = true;
+            cleaveServed = true;
+            cleaveReputation = 0;
             Console.ReadLine();
-        }
-
-        public void Patron1GoodEnd()
-        {
-            Terminal.WriteLine("The figure's eyes light up with hope. \"You may have just saved a life tonight.\"");
-            Terminal.WriteLine("They stand, leaving a small pouch of credits on the bar. \"For your kindness. Farewell, " + playerName + ".\"");
-            Terminal.WriteLine("Press Enter to continue...");
-            patron1Reputation += 3;
-            Console.ReadLine();
-        }
-
-        public void Patron1Ending()
-        {
-            if (patron1Reputation < 0)
-            {
-                Terminal.WriteLine("Patron1 seems displeased with your service.");
-            }
-            else if (patron1Reputation == 0)
-            {
-                Terminal.WriteLine("Patron1 seems indifferent about your service.");
-            }
-            else if (patron1Reputation > 0 && patron1Reputation <= 2)
-            {
-                Terminal.WriteLine("Patron1 seems satisfied with your service.");
-            }
-            else if (patron1Reputation > 2)
-            {
-                Terminal.WriteLine("Patron1 seems very pleased with your service.");
-            }
-            else
-            {
-                Terminal.WriteLine("Error in calculating Patron1's reaction.");
-            }
-            patron1Tip = patron1Reputation * 5;
-            if (patron1Tip < 0)
-                patron1Tip = 0;
-            Terminal.WriteLine("Patron1 leaves you a tip of " + patron1Tip + " credits.");
-            Terminal.WriteLine("Press Enter to continue...");
-            Console.ReadLine();
-            patron1Served = true;
             CustomerSelection();
         }
 
+        public void CleaveEnding()
+        {
+            Terminal.WriteLine("He downs the drink. Slow. Then gives a dry nod.");
+            if (cleaveReputation <= 0)
+            {
+                Terminal.WriteLine("\"Could’ve been jet fuel. Lucky it ain’t. Either way, I’ll watch.\"");
+            }
+            else if (cleaveReputation == 1)
+            {
+                Terminal.WriteLine("\"Hmph. You got the grit. Needs polish.\"");
+            }
+            else
+            {
+                Terminal.WriteLine("*He slides a gold tooth across the bar.*");
+                Terminal.WriteLine("\"Keep it. Might buy silence someday.\"");
+            }
 
+            cleaveTip = cleaveReputation * 10;
+            if (cleaveTip < 0) cleaveTip = 0;
+            Terminal.WriteLine("Cleave leaves you a tip of " + cleaveTip + " credits.");
+            Terminal.WriteLine("Press Enter to continue...");
+            cleaveServed = true;
+            Console.ReadLine();
+            CustomerSelection();
+        }
         //====================================================================================================
         //Patron 2
         //====================================================================================================
