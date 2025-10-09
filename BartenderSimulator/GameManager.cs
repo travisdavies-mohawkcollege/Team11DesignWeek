@@ -57,6 +57,7 @@ namespace Travis
             Program.TerminalExecuteMode = TerminalExecuteMode.ExecuteOnce;
             Program.TerminalInputMode = TerminalInputMode.KeyboardReadAndReadLine;
 
+            
             Terminal.SetTitle("The Long Drift");
             Terminal.UseRoboType = true;
             Terminal.RoboTypeIntervalMilliseconds = defaultTextSpeed;
@@ -64,8 +65,16 @@ namespace Travis
             Terminal.WordBreakCharacter = ' ';
         }
 
+        public void StartMenu()
+        {
+            ascii.DrawStartMenu();
+        }
+
         public void Execute()
         {
+            StartMenu();
+            Terminal.ReadLine();
+            
             Intro();
             CustomerSelection();
         }
@@ -186,6 +195,7 @@ namespace Travis
         public void ServeCleave()
         {
             Terminal.Clear();
+            ascii.DrawCleave();
             Terminal.WriteLine("You approach a slab of a man. Steel-jawed, hunched, and twice as unwelcoming");
             Terminal.WriteLine("Cleave “Graveljaw” Murdock doesn’t look up. Three teeth glint in the low barlight.");
             Terminal.WriteLine("Some folks say Cleave tips in teeth... if he likes you.");
@@ -275,7 +285,10 @@ namespace Travis
 
         public void CleaveDrink()
         {
+            Terminal.Clear();
             Terminal.WriteLine("\"Whiskey. Neat. No garnish. If there's fruit in there, I find your family.\"");
+            //-----------------------------------------------------------------------------------------
+            ascii.DrawWhiskeyGlass();
             mixing.MixDrink();
             drinkScore = mixing.score;
 
@@ -351,6 +364,7 @@ namespace Travis
         public void ServePatron2()
         {
             Terminal.Clear();
+            ascii.DrawPatron2();
             Terminal.WriteLine("In the dim corner, Patron1 sits alone, cloaked in shadow.");
             Terminal.WriteLine("\"You seem... different from the others. Why are you here, really?\"");
             Terminal.WriteLine("How do you respond?");
@@ -532,7 +546,10 @@ namespace Travis
 
         public void Patron2Drink1()
         {
+            Terminal.Clear();
             Terminal.WriteLine("\"Tell you what, make me an Old Fashioned.\"");
+            // -------------------------------------------------------------------
+            ascii.DrawWhiskeyGlass();
             mixing.MixDrink();
             drinkScore = mixing.score;
             if (drinkScore == 100)
@@ -582,7 +599,9 @@ namespace Travis
 
         public void Patron2Drink2()
         {
+            Terminal.Clear();
             Terminal.WriteLine("\"Tell you what, make me a Peach Margarita. It's good to mix it up a little.\"");
+            ascii.DrawMartiniGlass();
             mixing.MixDrink();
             drinkScore = mixing.score;
             if (drinkScore == 100)
@@ -685,6 +704,7 @@ namespace Travis
         public void ServePatron3()
         {
             Terminal.Clear();
+            ascii.DrawKael();
             Terminal.WriteLine("The bar doors hiss open. Kael \"Steelheart\" Arden steps in, polished boots echoing.");
             Terminal.WriteLine("His uniform is crisp, but there's a bright tropical pin on his collar.");
             Terminal.WriteLine("\"Evening, bartender. Got anything sweeter than this job?\"");
@@ -798,7 +818,9 @@ namespace Travis
 
         public void Patron3Drink1()
         {
+            Terminal.Clear();
             Terminal.WriteLine("\"Make it a Margarita. I trust your hand more than most cadets.\"");
+            ascii.DrawMartiniGlass();
             mixing.MixDrink();
             drinkScore = mixing.score;
             if (drinkScore == 100 && mixing.drink.Name.Equals("Margarita", StringComparison.OrdinalIgnoreCase))
@@ -829,7 +851,9 @@ namespace Travis
 
         public void Patron3Drink2()
         {
+            Terminal.Clear();
             Terminal.WriteLine("\"Gimme a Pina Colada. Let’s pretend this tin can’s a cabana.\"");
+            ascii.DrawMartiniGlass();
             mixing.MixDrink();
             drinkScore = mixing.score;
             if (drinkScore == 100 && mixing.drink.Name.Equals("Pina Colada", StringComparison.OrdinalIgnoreCase))
@@ -897,6 +921,7 @@ namespace Travis
         public void ServePatron4()
         {
             Terminal.Clear();
+            ascii.DrawPatron4();
             Terminal.WriteLine("In the dim corner, Patron1 sits alone, cloaked in shadow.");
             Terminal.WriteLine("\"You seem... different from the others. Why are you here, really?\"");
             Terminal.WriteLine("How do you respond?");
@@ -1078,7 +1103,9 @@ namespace Travis
 
         public void Patron4Drink1()
         {
+            Terminal.Clear();
             Terminal.WriteLine("\"Tell you what, make me an Old Fashioned.\"");
+            ascii.DrawWhiskeyGlass();
             mixing.MixDrink();
             drinkScore = mixing.score;
             if (drinkScore == 100)
@@ -1128,7 +1155,9 @@ namespace Travis
 
         public void Patron4Drink2()
         {
+            Terminal.Clear();
             Terminal.WriteLine("\"Tell you what, make me a Peach Margarita. It's good to mix it up a little.\"");
+            ascii.DrawMartiniGlass();
             mixing.MixDrink();
             drinkScore = mixing.score;
             if (drinkScore == 100)
