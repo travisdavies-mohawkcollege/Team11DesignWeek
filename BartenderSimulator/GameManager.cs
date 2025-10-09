@@ -57,6 +57,7 @@ namespace Travis
             Program.TerminalExecuteMode = TerminalExecuteMode.ExecuteOnce;
             Program.TerminalInputMode = TerminalInputMode.KeyboardReadAndReadLine;
 
+            
             Terminal.SetTitle("The Long Drift");
             Terminal.UseRoboType = true;
             Terminal.RoboTypeIntervalMilliseconds = defaultTextSpeed;
@@ -74,6 +75,7 @@ namespace Travis
         {
             //Intro Sequence - Game State 0
             Terminal.Clear();
+            ascii.DrawStartMenu();
             Terminal.WriteLine("Welcome to The Long Drift, the only good bar this side of the solar system!");
             Terminal.WriteLine("You are the new bartender here, and your job is to make drinks for the customers.");
             Terminal.WriteLine("What name do you write on your nametag? (Enter your name and press Enter)");
