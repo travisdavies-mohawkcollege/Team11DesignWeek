@@ -98,7 +98,7 @@ namespace Travis
             Terminal.Clear();
             Terminal.WriteLine("Four customers are spread across the bar. Who do you want to serve?");
             Terminal.WriteLine("1. Cleave");
-            Terminal.WriteLine("2. Patron2");
+            Terminal.WriteLine("2. Lyra");
             Terminal.WriteLine("3. Kael");
             Terminal.WriteLine("4. Patron4");
             Terminal.WriteLine("Type the number of the customer you want to serve, then press Enter:");
