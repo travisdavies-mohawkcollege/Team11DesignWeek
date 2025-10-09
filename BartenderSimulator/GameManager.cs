@@ -65,8 +65,16 @@ namespace Travis
             Terminal.WordBreakCharacter = ' ';
         }
 
+        public void StartMenu()
+        {
+            ascii.DrawStartMenu();
+        }
+
         public void Execute()
         {
+            StartMenu();
+            Terminal.ReadLine();
+            
             Intro();
             CustomerSelection();
         }
@@ -75,7 +83,6 @@ namespace Travis
         {
             //Intro Sequence - Game State 0
             Terminal.Clear();
-            ascii.DrawStartMenu();
             Terminal.WriteLine("Welcome to The Long Drift, the only good bar this side of the solar system!");
             Terminal.WriteLine("You are the new bartender here, and your job is to make drinks for the customers.");
             Terminal.WriteLine("What name do you write on your nametag? (Enter your name and press Enter)");
