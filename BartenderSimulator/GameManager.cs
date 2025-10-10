@@ -484,7 +484,6 @@ namespace Travis
             Terminal.WriteLine("\nHow do you respond?");
             Terminal.WriteLine("1. \"Cheaper than therapy, and the stories are better.\"");
             Terminal.WriteLine("2. \"Because I ran out of places that’d still have me.\"");
-            Terminal.WriteLine("3. [Stay silent]");
             string responseChoice = Terminal.ReadLine();
 
             switch (responseChoice)
@@ -514,6 +513,7 @@ namespace Travis
                     Terminal.WriteLine("Invalid choice. Please try again.");
                     Terminal.WriteLine("Press Enter to continue...");
                     Console.ReadLine();
+                    Patron2Path1();
                     break;
                     
             }
@@ -589,6 +589,7 @@ namespace Travis
                     Terminal.WriteLine("Invalid choice. Please try again.");
                     Terminal.WriteLine("Press Enter to continue...");
                     Console.ReadLine();
+                    Patron2Path3();
                     break;
             }
         }
