@@ -1235,10 +1235,10 @@ namespace Travis
         {
             Terminal.WriteLine("I take an interest in people, and barkeeps never disappoint.");
             Terminal.WriteLine("\"I'm here looking for tips on my lost partner. They got stranded on a supply run to a nearby outpost.\"");
-            Terminal.WriteLine("I've told you my story, care to return the favour?");
+            Terminal.WriteLine("\"I've told you my story, care to return the favour?\"");
             Terminal.WriteLine("How do you respond?");
-            Terminal.WriteLine("1. Tell him some of your struggles.");
-            Terminal.WriteLine("2. Recall the rumour you overheard patrons in the bar discussing earlier about a distress beacon.");
+            Terminal.WriteLine("1. (Tell him some of your struggles.)");
+            Terminal.WriteLine("2. (Recall the rumour you overheard patrons in the bar discussing earlier about a distress beacon.)");
             string responseChoice = Terminal.ReadLine();
             switch (responseChoice)
             {
@@ -1260,8 +1260,8 @@ namespace Travis
         public void Patron4Choice1()
         {
             Terminal.WriteLine("You can tell them the truth, or make something up.");
-            Terminal.WriteLine("1. Tell the truth.");
-            Terminal.WriteLine("2. Make something up.");
+            Terminal.WriteLine("1. (Tell the truth.)");
+            Terminal.WriteLine("2. (Make something up.)");
             string responseChoice = Terminal.ReadLine();
             switch (responseChoice)
             {
@@ -1319,7 +1319,7 @@ namespace Travis
 
         public void Patron4Choice3()
         {
-            Terminal.WriteLine("Have you seriously heard something about a distress beacon?");
+            Terminal.WriteLine("\"Have you seriously heard something about a distress beacon?\"");
             Terminal.WriteLine("How do you respond?");
             Terminal.WriteLine("1. \"Yeah, I heard some patrons talking about it earlier. \" (Share the details extensively)");
             Terminal.WriteLine("2. \"Yeah, I... think... . \" (Keep it vague)");
