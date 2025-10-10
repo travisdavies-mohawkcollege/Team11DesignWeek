@@ -1008,7 +1008,6 @@ namespace Travis
             if (drinkScore == 100 && mixing.drink.Name.Equals("Margarita", StringComparison.OrdinalIgnoreCase))
             {
                 Terminal.WriteLine("\"That hits the spot. I hope you don't ever think of switching careers.\"");
-                Terminal.WriteLine("\"That hits the spot. I hope you don't ever think of switching careers.\"");
                 patron3Reputation += 2;
             }
             else if (drinkScore >= 60 && mixing.drink.Name.Equals("Margarita", StringComparison.OrdinalIgnoreCase))
@@ -1089,12 +1088,12 @@ namespace Travis
             }
             else
             {
-                Terminal.WriteLine("Error in calculating Patron4's reaction.");
+                Terminal.WriteLine("Error in calculating Kael's reaction.");
             }
             patron3Tip = patron3Reputation * 5;
             if (patron3Tip < 0)
                 patron3Tip = 0;
-            Terminal.WriteLine("Atlas leaves you a tip of " + patron3Tip + " credits.");
+            Terminal.WriteLine("Kael leaves you a tip of " + patron3Tip + " credits.");
             Terminal.WriteLine("Press Enter to continue...");
             Console.ReadLine();
             patron3Served = true;
