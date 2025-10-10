@@ -90,7 +90,7 @@ namespace Travis
             Terminal.WriteLine("You are saving up to get off this station, so every credit counts.");
             Terminal.WriteLine("What name do you write on your nametag? (Enter your name and press Enter)");
             playerName = Terminal.ReadLine();
-            Terminal.WriteLine("Time to clock in, " + playerName + ". Time to pour drinks and ease their weary souls.");
+            Terminal.WriteLine("Time to clock in, " + playerName + ". Pour drinks and ease their weary souls.");
             Terminal.WriteLine("Press Enter to continue...");
             Console.ReadLine();
         }
@@ -509,7 +509,7 @@ namespace Travis
         {
             Terminal.Clear();
             ascii.DrawPatron2();
-            Terminal.WriteLine("The singer finishes her song in the bar's lounge. The song’s tone is bittersweet—about young love, fleeting moments, hardship. She pulls out a cigarette and sits by the bar.");
+            Terminal.WriteLine("The singer, Lyra finishes her song in the bar's lounge. The song’s tone is bittersweet—about young love, fleeting moments, hardship. She pulls out a cigarette and sits by the bar.");
             Terminal.WriteLine("\"You've been watching me sing.\"");
             Terminal.WriteLine("How do you respond?");
             Terminal.WriteLine("1. \"You've got a hell of a voice.\"");
@@ -527,7 +527,7 @@ namespace Travis
                     Patron2Path1();
                     break;
                 case "2":
-                    Terminal.WriteLine("\"Careful bartender... curiosity can be dangerous. Remember that.\"");
+                    Terminal.WriteLine("\"Don't be snarky with me now...\"");
                     Terminal.WriteLine("Press Enter to continue...");
                     Console.ReadLine();
                     Patron2Path2();
