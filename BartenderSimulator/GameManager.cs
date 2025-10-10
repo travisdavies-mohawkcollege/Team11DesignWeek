@@ -227,19 +227,27 @@ namespace Travis
                 case "1":
                     Terminal.WriteLine("\"Sharp call. Neat it is. Back in the war, neat was the only way to drink before a mission.\"");
                     cleaveReputation += 1;
+                    Terminal.WriteLine("Press Enter to continue...");
+                    Console.ReadLine();
                     CleavePath1();
                     break;
                 case "2":
                     Terminal.WriteLine("\"Ain’t here for the jazz. I wait. I watch.\"");
+                    Terminal.WriteLine("Press Enter to continue...");
+                    Console.ReadLine();
                     CleavePath2();
                     break;
                 case "3":
                     Terminal.WriteLine("\"Not smart to mouth off in orbit, bartender.\"");
+                    Terminal.WriteLine("Press Enter to continue...");
+                    Console.ReadLine();
                     cleaveReputation -= 2;
                     CleaveChoice1();
                     break;
                 default:
                     Terminal.WriteLine("Invalid choice. Please try again.");
+                    Terminal.WriteLine("Press Enter to continue...");
+                    Console.ReadLine();
                     ServeCleave();
                     return;
             }
@@ -257,15 +265,21 @@ namespace Travis
             {
                 case "1":
                     Terminal.WriteLine("\"Heh. Keep that steel. Might tip you somethin’ real.\"");
+                    Terminal.WriteLine("Press Enter to continue...");
+                    Console.ReadLine();
                     CleaveDrink();
                     break;
                 case "2":
                     Terminal.WriteLine("\"Then maybe I’ll keep my teeth to myself.\"");
+                    Terminal.WriteLine("Press Enter to continue...");
+                    Console.ReadLine();
                     cleaveReputation -= 1;
                     CleaveDrink();
                     break;
                 default:
                     Terminal.WriteLine("Invalid choice. Please try again.");
+                    Terminal.WriteLine("Press Enter to continue...");
+                    Console.ReadLine();
                     CleavePath1();
                     return;
             }
@@ -284,15 +298,21 @@ namespace Travis
                 case "1":
                     Terminal.WriteLine("\"Respect. Even silence earns steel here.\"");
                     cleaveReputation += 1;
+                    Terminal.WriteLine("Press Enter to continue...");
+                    Console.ReadLine();
                     CleaveDrink();
                     break;
                 case "2":
                     Terminal.WriteLine("\"Keep that lip, barkeep. Else I unpin memories.\"");
                     cleaveReputation -= 2;
+                    Terminal.WriteLine("Press Enter to continue...");
+                    Console.ReadLine();
                     CleaveBadEnd();
                     break;
                 default:
                     Terminal.WriteLine("Invalid choice. Please try again.");
+                    Terminal.WriteLine("Press Enter to continue...");
+                    Console.ReadLine();
                     CleavePath2();
                     return;
             }
@@ -311,10 +331,14 @@ namespace Travis
                 case "1":
                     Terminal.WriteLine("\"Hmph. Just make it right.\"");
                     cleaveReputation -= 1;
+                    Terminal.WriteLine("Press Enter to continue...");
+                    Console.ReadLine();
                     CleaveDrink();
                     break;
                 case "2":
                     Terminal.WriteLine("\"Big mistake, barkeep.\"");
+                    Terminal.WriteLine("Press Enter to continue...");
+                    Console.ReadLine();
                     cleaveReputation -= 3;
                     CleaveBadEnd();
                     return;
@@ -376,14 +400,20 @@ namespace Travis
             {
                 case "1":
                     Terminal.WriteLine("You stay silent as he leaves.");
+                    Terminal.WriteLine("Press Enter to continue...");
+                    Console.ReadLine();
                     CustomerSelection();
                     break;
                 case "2":
                     Terminal.WriteLine("You warn him to watch his back.");
+                    Terminal.WriteLine("Press Enter to continue...");
+                    Console.ReadLine();
                     CleaveDeath();
                     return;
                 default:
                     Terminal.WriteLine("Invalid choice. Please try again.");
+                    Terminal.WriteLine("Press Enter to continue...");
+                    Console.ReadLine();
                     CleaveBadEnd();
                     return;
             }
@@ -693,7 +723,8 @@ namespace Travis
                     patron2Reputation -= 2;
                 }
             }
-
+            Terminal.WriteLine("Press Enter to continue...");
+            Console.ReadLine();
             Patron2Ending();
         }
 
@@ -779,19 +810,27 @@ namespace Travis
                 case "1":
                     Terminal.WriteLine("\"Ha! Now we're talkin'. Surprise me — but make it tropical.\"");
                     patron3Reputation += 1;
+                    Terminal.WriteLine("Press Enter to continue...");
+                    Console.ReadLine();
                     Patron3Path1();
                     break;
                 case "2":
                     Terminal.WriteLine("\"Don’t tempt me. But the stars need guarding.\"");
+                    Terminal.WriteLine("Press Enter to continue...");
+                    Console.ReadLine();
                     Patron3Path2();
                     break;
                 case "3":
                     Terminal.WriteLine("\"Relax, champ. Shift’s over. Uniform stays on, but the badge is off.\"");
                     patron3Reputation -= 1;
+                    Terminal.WriteLine("Press Enter to continue...");
+                    Console.ReadLine();
                     Patron3Path3();
                     break;
                 default:
                     Terminal.WriteLine("Invalid choice. Please try again.");
+                    Terminal.WriteLine("Press Enter to continue...");
+                    Console.ReadLine();
                     ServePatron3();
                     return;
             }
@@ -809,15 +848,21 @@ namespace Travis
             {
                 case "1":
                     Terminal.WriteLine("\"Hmm. Either you’re honest or a good liar. I’ll sip on that.\"");
+                    Terminal.WriteLine("Press Enter to continue...");
+                    Console.ReadLine();
                     Patron3Drink1();
                     break;
                 case "2":
                     Terminal.WriteLine("\"You’re sharp. That’s good. I watch the sharp ones.\"");
+                    Terminal.WriteLine("Press Enter to continue...");
+                    Console.ReadLine();
                     patron3Reputation += 1;
                     Patron3Choice1();
                     break;
                 default:
                     Terminal.WriteLine("Invalid choice. Please try again.");
+                    Terminal.WriteLine("Press Enter to continue...");
+                    Console.ReadLine();
                     Patron3Path1();
                     return;
             }
@@ -836,14 +881,20 @@ namespace Travis
                 case "1":
                     Terminal.WriteLine("\"Now that’s a philosophy I can toast to.\"");
                     patron3Reputation += 1;
+                    Terminal.WriteLine("Press Enter to continue...");
+                    Console.ReadLine();
                     Patron3Drink2();
                     break;
                 case "2":
                     Terminal.WriteLine("\"Ambition’s a strong pour. Let’s see how yours mixes.\"");
+                    Terminal.WriteLine("Press Enter to continue...");
+                    Console.ReadLine();
                     Patron3Drink1();
                     break;
                 default:
                     Terminal.WriteLine("Invalid choice. Please try again.");
+                    Terminal.WriteLine("Press Enter to continue...");
+                    Console.ReadLine();
                     Patron3Path2();
                     return;
             }
@@ -853,14 +904,17 @@ namespace Travis
         {
             Terminal.WriteLine("Kael raises an eyebrow, amused.");
             Terminal.WriteLine("\"You and Cleave would get along. He also thinks I’m still on duty.\"");
-            Terminal.WriteLine("1. \"Cleave talks about you. Calls you the \"loud one.\"\"");
+            Terminal.WriteLine("1. \"He's an interesting fellow, that one.\"\"");
             Terminal.WriteLine("2. \"Guess old habits die loud.\"");
 
             string responseChoice = Terminal.ReadLine();
             switch (responseChoice)
             {
                 case "1":
-                    Terminal.WriteLine("\"He said that? Ha! That tooth-rattling grump.\"");
+                    Terminal.WriteLine("\"He is. And you'd be best not to push his temper.\"");
+                    Terminal.WriteLine(" \"I've heard things about him that make a man want to drink to forget. Speaking of....\"");
+                    Terminal.WriteLine("Press Enter to continue...");
+                    Console.ReadLine();
                     patron3Reputation += 1;
                     Patron3Drink2();
                     break;
@@ -886,11 +940,15 @@ namespace Travis
                 case "1":
                     Terminal.WriteLine("\"Sure you haven’t. I’ll be watching you.\"");
                     patron3Reputation -= 2;
+                    Terminal.WriteLine("Press Enter to continue...");
+                    Console.ReadLine();
                     Patron3Drink1();
                     break;
                 case "2":
                     Terminal.WriteLine("\"Hmm. Interesting. Thanks for the tip.\"");
                     patron3Reputation += 2;
+                    Terminal.WriteLine("Press Enter to continue...");
+                    Console.ReadLine();
                     Patron3ArrestEnding();
                     break;
             }
@@ -1039,18 +1097,26 @@ namespace Travis
                 case "1":
                     Terminal.WriteLine("\"Calm down. I was just making conversation.\"");
                     patron4Reputation -= 1;
+                    Terminal.WriteLine("Press Enter to continue...");
+                    Console.ReadLine();
                     Patron4Path1();
                     break;
                 case "2":
                     Terminal.WriteLine("\"A noble pursuit. But be careful — not every story ends well.\"");
+                    Terminal.WriteLine("Press Enter to continue...");
+                    Console.ReadLine();
                     Patron4Path2();
                     break;
                 case "3":
                     Terminal.WriteLine("\"Curiosity can be dangerous. Remember that.\"");
+                    Terminal.WriteLine("Press Enter to continue...");
+                    Console.ReadLine();
                     Patron4Path3();
                     break;
                 default:
                     Terminal.WriteLine("Invalid choice. Please try again.");
+                    Terminal.WriteLine("Press Enter to continue...");
+                    Console.ReadLine();
                     ServePatron4();
                     return;
             }
@@ -1069,15 +1135,21 @@ namespace Travis
             {
                 case "1":
                     Terminal.WriteLine("\"I get it, but I have a feeling that isn't the full truth.\"");
+                    Terminal.WriteLine("Press Enter to continue...");
+                    Console.ReadLine();
                     Patron4Choice1();
                     break;
                 case "2":
                     Terminal.WriteLine("\"You couldn't just leave it alone, huh?\"");
+                    Terminal.WriteLine("Press Enter to continue...");
+                    Console.ReadLine();
                     patron4Reputation -= 3;
                     Patron4BadEnd();
                     break;
                 default:
                     Terminal.WriteLine("Invalid choice. Please try again.");
+                    Terminal.WriteLine("Press Enter to continue...");
+                    Console.ReadLine();
                     Patron4Path1();
                     return;
             }
@@ -1096,15 +1168,21 @@ namespace Travis
             {
                 case "1":
                     Terminal.WriteLine("\"I get it, but I have a feeling that isn't the full truth.\"");
+                    Terminal.WriteLine("Press Enter to continue...");
+                    Console.ReadLine();
                     Patron4Choice1();
                     break;
                 case "2":
                     Terminal.WriteLine("\"I see... would you care to tell me more?\"");
+                    Terminal.WriteLine("Press Enter to continue...");
+                    Console.ReadLine();
                     patron4Reputation += 1;
                     Patron4Choice2();
                     break;
                 default:
                     Terminal.WriteLine("Invalid choice. Please try again.");
+                    Terminal.WriteLine("Press Enter to continue...");
+                    Console.ReadLine();
                     Patron4Path2();
                     return;
             }
@@ -1123,10 +1201,14 @@ namespace Travis
             {
                 case "1":
                     Terminal.WriteLine("\"I get it, but I have a feeling that isn't the full truth.\"");
+                    Terminal.WriteLine("Press Enter to continue...");
+                    Console.ReadLine();
                     Patron4Choice2();
                     break;
                 case "2":
                     Terminal.WriteLine("\"Oh?\"");
+                    Terminal.WriteLine("Press Enter to continue...");
+                    Console.ReadLine();
                     Patron4Choice3();
                     break;
             }
@@ -1142,15 +1224,21 @@ namespace Travis
             {
                 case "1":
                     Terminal.WriteLine("\"I see. Sometimes the truth is the heaviest burden.\"");
+                    Terminal.WriteLine("Press Enter to continue...");
+                    Console.ReadLine();
                     patron4Reputation += 1;
                     Patron4Drink1();
                     break;
                 case "2":
                     Terminal.WriteLine("\"Lies are easy to tell, but hard to keep. I hope you find what you're looking for.\"");
+                    Terminal.WriteLine("Press Enter to continue...");
+                    Console.ReadLine();
                     Patron4BadEnd();
                     break;
                 default:
                     Terminal.WriteLine("Invalid choice. Please try again.");
+                    Terminal.WriteLine("Press Enter to continue...");
+                    Console.ReadLine();
                     Patron4Choice1();
                     return;
             }
@@ -1166,15 +1254,21 @@ namespace Travis
             {
                 case "1":
                     Terminal.WriteLine("\"Stories are the threads that weave our lives together. Thank you for sharing.\"");
+                    Terminal.WriteLine("Press Enter to continue...");
+                    Console.ReadLine();
                     patron4Reputation += 1;
                     Patron4Drink2();
                     break;
                 case "2":
                     Terminal.WriteLine("\"Sometimes silence speaks louder than words. I won't press for more.\"");
+                    Terminal.WriteLine("Press Enter to continue...");
+                    Console.ReadLine();
                     Patron4Drink1();
                     break;
                 default:
                     Terminal.WriteLine("Invalid choice. Please try again.");
+                    Terminal.WriteLine("Press Enter to continue...");
+                    Console.ReadLine();
                     Patron3Path2();
                     return;
             }
@@ -1191,15 +1285,21 @@ namespace Travis
             {
                 case "1":
                     Terminal.WriteLine("\"Information is power. Thank you for trusting me with it.\"");
+                    Terminal.WriteLine("Press Enter to continue...");
+                    Console.ReadLine();
                     Patron4GoodEnd();
                     break;
                 case "2":
                     Terminal.WriteLine("\"Even a hint can be a lifeline. I appreciate your discretion.\"");
+                    Terminal.WriteLine("Press Enter to continue...");
+                    Console.ReadLine();
                     patron4Reputation -= 1;
                     Patron4Drink2();
                     break;
                 default:
                     Terminal.WriteLine("Invalid choice. Please try again.");
+                    Terminal.WriteLine("Press Enter to continue...");
+                    Console.ReadLine();
                     Patron4Choice3();
                     return;
             }
@@ -1303,6 +1403,8 @@ namespace Travis
                     patron4Reputation -= 2;
                 }
             }
+            Terminal.WriteLine("Press Enter to continue...");
+            Console.ReadLine();
 
             Patron4Ending();
         }
