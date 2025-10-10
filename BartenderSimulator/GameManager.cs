@@ -1112,7 +1112,7 @@ namespace Travis
             patron4Left = true;
             patron3Done = true;
             patron4Done = true;
-            patron3Reputation = 10;
+            patron3Reputation = 20;
             Console.ReadLine();
             Patron3Ending();
         }
@@ -1253,8 +1253,14 @@ namespace Travis
                     Console.ReadLine();
                     Patron4Choice3();
                     break;
+                default:
+                    Terminal.WriteLine("Invalid choice. Please try again.");
+                    Terminal.WriteLine("Press Enter to continue...");
+                    Console.ReadLine();
+                    Patron4Path3();
+                    return;
             }
-        }
+            }
 
         public void Patron4Choice1()
         {
