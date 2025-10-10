@@ -25,9 +25,11 @@ namespace Travis
         //Patron 1
         int cleaveReputation = 0;
         int cleaveTip = 0;
+        int cleaveFinalTip= 0;
         bool cleaveLeft = false;
         bool cleaveServed = false;
         bool cleaveDone = false;
+        bool hasTooth = false;
         //Patron 2
         int patron2Reputation = 0;
         int patron2Tip = 0;
@@ -83,6 +85,9 @@ namespace Travis
             Terminal.Clear();
             Terminal.WriteLine("Welcome to The Long Drift, the only good bar this side of the solar system!");
             Terminal.WriteLine("You are the new bartender here, and your job is to make drinks for the customers.");
+            Terminal.WriteLine("Some of them are friendly, some are not. It's up to you to decide how to handle each situation.");
+            Terminal.WriteLine("Patrons who appreciate your service will tip well. Those who don't... won't.");
+            Terminal.WriteLine("You are saving up to get off this station, so every credit counts.");
             Terminal.WriteLine("What name do you write on your nametag? (Enter your name and press Enter)");
             playerName = Terminal.ReadLine();
             Terminal.WriteLine("Time to clock in, " + playerName + ". Time to pour drinks and ease their weary souls.");
@@ -197,6 +202,29 @@ namespace Travis
             Terminal.WriteLine("The bar is quiet now. All your patrons have been served or have left.");
             int totalTips = cleaveTip + patron2Tip + patron3Tip + patron4Tip;
             Terminal.WriteLine("You count your tips: " + totalTips + " credits.");
+            if (totalTips >= 200)
+            {
+                Terminal.WriteLine("With that, you can finally afford your passage off this station... if you still want to leave.");
+                Terminal.WriteLine("Congratulations, " + playerName + "! You've made it off the station and into a new adventures.");
+                Terminal.WriteLine("Good Ending! ");
+                
+            }
+            else if(totalTips >= 100 && totalTips < 200)
+            {
+                Terminal.WriteLine("It's enough to get you a ticket to a nearby colony.");
+                Terminal.WriteLine("Not the big escape you dreamed of, but it's a start.");
+                Terminal.WriteLine("Keep working, " + playerName + ". One day, you'll make it off this station.");
+                Terminal.WriteLine("Neutral Ending.");
+
+            }
+            else
+            {
+                Terminal.WriteLine("It's not enough to get off the station yet, but it's a start.");
+                Terminal.WriteLine("Keep working, " + playerName + ". One day, you'll make it off this station.");
+                Terminal.WriteLine("May just take a few eons.");
+                Terminal.WriteLine("Bad Ending.... ");
+
+            }
             Terminal.WriteLine("Thanks for playing The Long Drift!");
             Terminal.WriteLine("Press Enter to exit...");
             Console.ReadLine();
@@ -357,6 +385,7 @@ namespace Travis
             if (drinkScore == 100 && mixing.drink.Name.Equals("Whiskey Neat", StringComparison.OrdinalIgnoreCase))
             {
                 Terminal.WriteLine("\"Perfect. You get a tooth — not from me. From someone who owed me.\"");
+                hasTooth = true;
                 cleaveReputation += 2;
             }
             else if (drinkScore >= 60 && mixing.drink.Name.Equals("Whiskey Neat", StringComparison.OrdinalIgnoreCase))
@@ -448,10 +477,24 @@ namespace Travis
                 Terminal.WriteLine("*He slides a gold tooth across the bar.*");
                 Terminal.WriteLine("\"Keep it. Might buy silence someday.\"");
             }
-
             cleaveTip = cleaveReputation * 10;
+            if (hasTooth)
+            {
+                Terminal.WriteLine("You now have one of Cleave's fabled teeth.");
+                Terminal.WriteLine("You estimate it's worth at around 50 credits.");
+            }
+
+            
             if (cleaveTip < 0) cleaveTip = 0;
             Terminal.WriteLine("Cleave leaves you a tip of " + cleaveTip + " credits.");
+            if(hasTooth)
+            {
+                cleaveTip += 50;
+                Terminal.WriteLine("...and the tooth.");
+                Terminal.WriteLine("Including the tooth, your total comes to " + cleaveTip + " credits.");
+            }
+            
+            
             Terminal.WriteLine("Press Enter to continue...");
             cleaveServed = true;
             cleaveDone = true;
@@ -1070,7 +1113,7 @@ namespace Travis
             patron4Left = true;
             patron3Done = true;
             patron4Done = true;
-            patron3Reputation = 5;
+            patron3Reputation = 10;
             Console.ReadLine();
             Patron3Ending();
         }
