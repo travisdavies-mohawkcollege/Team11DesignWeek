@@ -26,9 +26,7 @@ namespace Travis
         int cleaveReputation = 0;
         int cleaveTip = 0;
         bool cleaveLeft = false;
-        bool cleaveLeft = false;
         bool cleaveServed = false;
-        bool cleaveDone = false;
         bool cleaveDone = false;
         //Patron 2
         int patron2Reputation = 0;
@@ -36,20 +34,17 @@ namespace Travis
         bool patron2Left = false;
         bool patron2Served = false;
         bool patron2Done = false;
-        bool patron2Done = false;
         //Patron 3
         int patron3Reputation = 0;
         int patron3Tip = 0;
         bool patron3Left = false;
         bool patron3Served = false;
         bool patron3Done = false;
-        bool patron3Done = false;
         //Patron 4
         int patron4Reputation = 0;
         int patron4Tip = 0;
         bool patron4Left = false;
         bool patron4Served = false;
-        bool patron4Done = false;
         bool patron4Done = false;
 
         //Script References
@@ -104,16 +99,10 @@ namespace Travis
             {
                 EndGame();
             }
-            //Check if all customers have been served or left
-            if (cleaveDone && patron2Done && patron3Done && patron4Done)
-            {
-                EndGame();
-            }
             Terminal.WriteLine("Four customers are spread across the bar. Who do you want to serve?");
             Terminal.WriteLine("1. Cleave");
             Terminal.WriteLine("2. Lyra");
             Terminal.WriteLine("3. Kael");
-            Terminal.WriteLine("4. Atlas");
             Terminal.WriteLine("4. Atlas");
             Terminal.WriteLine("Type the number of the customer you want to serve, then press Enter:");
             string customerChoice = Terminal.ReadLine();
@@ -129,7 +118,6 @@ namespace Travis
                         return;
                     }
                     if (cleaveLeft)
-                    if (cleaveLeft)
                     {
                         Terminal.WriteLine("Cleave has already left. Please choose another customer.");
                         Terminal.WriteLine("Press Enter to continue...");
@@ -143,7 +131,6 @@ namespace Travis
                     if (patron2Served)
                     {
                         Terminal.WriteLine("You've already served Lyra. Please choose another customer.");
-                        Terminal.WriteLine("You've already served Lyra. Please choose another customer.");
                         Terminal.WriteLine("Press Enter to continue...");
                         Console.ReadLine();
                         CustomerSelection();
@@ -151,7 +138,6 @@ namespace Travis
                     }
                     if (patron2Left)
                     {
-                        Terminal.WriteLine("Lyra has already left. Please choose another customer.");
                         Terminal.WriteLine("Lyra has already left. Please choose another customer.");
                         Terminal.WriteLine("Press Enter to continue...");
                         Console.ReadLine();
@@ -164,7 +150,6 @@ namespace Travis
                     if (patron3Served)
                     {
                         Terminal.WriteLine("You've already served Kael. Please choose another customer.");
-                        Terminal.WriteLine("You've already served Kael. Please choose another customer.");
                         Terminal.WriteLine("Press Enter to continue...");
                         Console.ReadLine();
                         CustomerSelection();
@@ -172,7 +157,6 @@ namespace Travis
                     }
                     if (patron3Left)
                     {
-                        Terminal.WriteLine("Kael has already left. Please choose another customer.");
                         Terminal.WriteLine("Kael has already left. Please choose another customer.");
                         Terminal.WriteLine("Press Enter to continue...");
                         Console.ReadLine();
@@ -185,7 +169,6 @@ namespace Travis
                     if (patron4Served)
                     {
                         Terminal.WriteLine("You've already served Atlas. Please choose another customer.");
-                        Terminal.WriteLine("You've already served Atlas. Please choose another customer.");
                         Terminal.WriteLine("Press Enter to continue...");
                         Console.ReadLine();
                         CustomerSelection();
@@ -193,7 +176,6 @@ namespace Travis
                     }
                     if (patron4Left)
                     {
-                        Terminal.WriteLine("Atlas has already left. Please choose another customer.");
                         Terminal.WriteLine("Atlas has already left. Please choose another customer.");
                         Terminal.WriteLine("Press Enter to continue...");
                         Console.ReadLine();
@@ -207,18 +189,6 @@ namespace Travis
                     CustomerSelection();
                     break;
             }
-        }
-
-        public void EndGame()
-        {
-            Terminal.Clear();
-            Terminal.WriteLine("The bar is quiet now. All your patrons have been served or have left.");
-            int totalTips = cleaveTip + patron2Tip + patron3Tip + patron4Tip;
-            Terminal.WriteLine("You count your tips: " + totalTips + " credits.");
-            Terminal.WriteLine("Thanks for playing The Long Drift!");
-            Terminal.WriteLine("Press Enter to exit...");
-            Console.ReadLine();
-            Environment.Exit(0);
         }
 
         public void EndGame()
@@ -266,7 +236,6 @@ namespace Travis
                 case "3":
                     Terminal.WriteLine("\"Not smart to mouth off in orbit, bartender.\"");
                     cleaveReputation -= 2;
-                    CleaveChoice1();
                     CleaveChoice1();
                     break;
                 default:
@@ -352,29 +321,6 @@ namespace Travis
             }
         }
 
-        public void CleaveChoice1()
-        {
-            Terminal.WriteLine("He leans in, voice low and dangerous.");
-            Terminal.WriteLine("\"You got two choices: make my drink right, or make it my last.\"");
-            Terminal.WriteLine("How do you respond?");
-            Terminal.WriteLine("1. \"Calm down, I’m just doing my job.\"");
-            Terminal.WriteLine("2. \"You want a fight, you’ll find one outside.\"");
-            string responseChoice = Terminal.ReadLine();
-            switch (responseChoice)
-            {
-                case "1":
-                    Terminal.WriteLine("\"Hmph. Just make it right.\"");
-                    cleaveReputation -= 1;
-                    CleaveDrink();
-                    break;
-                case "2":
-                    Terminal.WriteLine("\"Big mistake, barkeep.\"");
-                    cleaveReputation -= 3;
-                    CleaveBadEnd();
-                    return;
-            }
-        }
-
         public void CleaveDrink()
         {
             Terminal.Clear();
@@ -420,42 +366,8 @@ namespace Travis
             Terminal.WriteLine("Press Enter to continue...");
             cleaveLeft = true;
             cleaveDone = true;
-            cleaveLeft = true;
-            cleaveDone = true;
             cleaveReputation = 0;
             Console.ReadLine();
-            Terminal.WriteLine("You have a chance to get a last word in as the man leaves.");
-            Terminal.WriteLine("1. (Stay silent.)");
-            Terminal.WriteLine("2. \"Watch your back, merc.\"");
-            string responseChoice = Terminal.ReadLine();
-            switch (responseChoice)
-            {
-                case "1":
-                    Terminal.WriteLine("You stay silent as he leaves.");
-                    CustomerSelection();
-                    break;
-                case "2":
-                    Terminal.WriteLine("You warn him to watch his back.");
-                    CleaveDeath();
-                    return;
-                default:
-                    Terminal.WriteLine("Invalid choice. Please try again.");
-                    CleaveBadEnd();
-                    return;
-            }
-        }
-
-        public void CleaveDeath()
-        {
-            Terminal.WriteLine("Cleave's eyes flash. In a blur, he draws a hidden pistol and fires.");
-            Terminal.RoboTypeIntervalMilliseconds = blackoutTextSpeed;
-            Terminal.WriteLine("You feel a sharp pain as the bullet hits you. Everything fades to black.");
-            Terminal.WriteLine("Game over...");
-            Terminal.WriteLine("Press Enter to continue...");
-            cleaveLeft = true;
-            cleaveReputation = 0;
-            Console.ReadLine();
-            Environment.Exit(1);
             Terminal.WriteLine("You have a chance to get a last word in as the man leaves.");
             Terminal.WriteLine("1. (Stay silent.)");
             Terminal.WriteLine("2. \"Watch your back, merc.\"");
@@ -513,12 +425,11 @@ namespace Travis
             Terminal.WriteLine("Press Enter to continue...");
             cleaveServed = true;
             cleaveDone = true;
-            cleaveDone = true;
             Console.ReadLine();
             CustomerSelection();
         }
         //====================================================================================================
-        //Patron 2
+        //Patron 2 - Lyra
         //====================================================================================================
 
         public void ServePatron2()
@@ -531,31 +442,33 @@ namespace Travis
             Terminal.WriteLine("1. \"You've got a hell of a voice.\"");
             Terminal.WriteLine("2. \"How couldn't I?\"");
             Terminal.WriteLine("3. \"Not much else to do in this place.\"");
-            Terminal.WriteLine("1. \"You've got a hell of a voice.\"");
-            Terminal.WriteLine("2. \"How couldn't I?\"");
-            Terminal.WriteLine("3. \"Not much else to do in this place.\"");
             string responseChoice = Terminal.ReadLine();
 
             switch (responseChoice)
             {
                 case "1":
                     Terminal.WriteLine("\"Mm thank you. I've been singing since I was 10.\"");
-                    Terminal.WriteLine("\"Mm thank you. I've been singing since I was 10.\"");
                     patron2Reputation -= 1;
+                    Terminal.WriteLine("Press Enter to continue...");
+                    Console.ReadLine();
                     Patron2Path1();
                     break;
                 case "2":
                     Terminal.WriteLine("\"Careful bartender... curiosity can be dangerous. Remember that.\"");
-                    Terminal.WriteLine("\"Careful bartender... curiosity can be dangerous. Remember that.\"");
+                    Terminal.WriteLine("Press Enter to continue...");
+                    Console.ReadLine();
                     Patron2Path2();
                     break;
                 case "3":
                     Terminal.WriteLine("\"Maybe I'm just a distraction.\"");
-                    Terminal.WriteLine("\"Maybe I'm just a distraction.\"");
+                    Terminal.WriteLine("Press Enter to continue...");
+                    Console.ReadLine();
                     Patron2Path3();
                     break;
                 default:
                     Terminal.WriteLine("Invalid choice. Please try again.");
+                    Terminal.WriteLine("Press Enter to continue...");
+                    Console.ReadLine();
                     ServePatron2();
                     return;
 
@@ -566,21 +479,12 @@ namespace Travis
         public void Patron2Path1()
         {
             Terminal.WriteLine();
-            Terminal.WriteLine("She finishes a puff of her drag, drifts toward the window."); Terminal.WriteLine("\"So uh, tell me barkeep... why are you really here?\"");
-
+            Terminal.WriteLine("She finishes a puff of her drag, drifts toward the window."); 
+            Terminal.WriteLine("\"So uh, tell me barkeep... why are you really here?\"");
             Terminal.WriteLine("\nHow do you respond?");
             Terminal.WriteLine("1. \"Cheaper than therapy, and the stories are better.\"");
             Terminal.WriteLine("2. \"Because I ran out of places that’d still have me.\"");
             Terminal.WriteLine("3. [Stay silent]");
-
-            Terminal.WriteLine();
-            Terminal.WriteLine("She finishes a puff of her drag, drifts toward the window."); Terminal.WriteLine("\"So uh, tell me barkeep... why are you really here?\"");
-
-            Terminal.WriteLine("\nHow do you respond?");
-            Terminal.WriteLine("1. \"Cheaper than therapy, and the stories are better.\"");
-            Terminal.WriteLine("2. \"Because I ran out of places that’d still have me.\"");
-            Terminal.WriteLine("3. [Stay silent]");
-
             string responseChoice = Terminal.ReadLine();
 
             switch (responseChoice)
@@ -590,11 +494,8 @@ namespace Travis
                     Terminal.WriteLine("She leans on the counter, ash falling from her cigarette. \"You must hear a lot of broken souls spill out after last call.\"");
                     Terminal.WriteLine("You shrug, polishing a glass. \"Comes with the job. Everyone’s got ghosts. Some just tip better than others.\"");
                     patron2Reputation += 1;
-                    Patron2Drink1();
-                    Terminal.WriteLine("\"Ha. Maybe I should start running a tab here then.\"");
-                    Terminal.WriteLine("She leans on the counter, ash falling from her cigarette. \"You must hear a lot of broken souls spill out after last call.\"");
-                    Terminal.WriteLine("You shrug, polishing a glass. \"Comes with the job. Everyone’s got ghosts. Some just tip better than others.\"");
-                    patron2Reputation += 1;
+                    Terminal.WriteLine("Press Enter to continue...");
+                    Console.ReadLine();
                     Patron2Drink1();
                     break;
 
@@ -604,21 +505,17 @@ namespace Travis
                     Terminal.WriteLine("Then she smiles, a little forced but charming. \"Maybe this station’s where all the strays end up.\"");
                     Terminal.WriteLine("You smirk. \"Could be worse places to get lost.\"");
                     patron2Reputation += 1;
-                    Patron2Drink2();
-                    Terminal.WriteLine("\"Guess that makes two of us,\" she says softly, eyes lowering for just a second.");
-                    Terminal.WriteLine("Then she smiles, a little forced but charming. \"Maybe this station’s where all the strays end up.\"");
-                    Terminal.WriteLine("You smirk. \"Could be worse places to get lost.\"");
-                    patron2Reputation += 1;
+                    Terminal.WriteLine("Press Enter to continue...");
+                    Console.ReadLine();
                     Patron2Drink2();
                     break;
-
-
-
 
                 default:
                     Terminal.WriteLine("Invalid choice. Please try again.");
+                    Terminal.WriteLine("Press Enter to continue...");
+                    Console.ReadLine();
                     break;
-                    break;
+                    
             }
         }
 
@@ -628,26 +525,17 @@ namespace Travis
         {
             Terminal.WriteLine("\nShe takes another puff of her drag, eyes drifting toward the viewport—Earth just a blue smear in the black.");
             Terminal.WriteLine("\"Funny, isn’t it? All that life down there, and somehow this place feels more alive.\"");
-
             Terminal.WriteLine("\nHow do you respond?");
             Terminal.WriteLine("1. \"A girl like you could make anywhere feel alive.\"");
             Terminal.WriteLine("2. \"If this is alive, I don't want to see dead.\"");
-
-            Terminal.WriteLine("\nShe takes another puff of her drag, eyes drifting toward the viewport—Earth just a blue smear in the black.");
-            Terminal.WriteLine("\"Funny, isn’t it? All that life down there, and somehow this place feels more alive.\"");
-
-            Terminal.WriteLine("\nHow do you respond?");
-            Terminal.WriteLine("1. \"A girl like you could make anywhere feel alive.\"");
-            Terminal.WriteLine("2. \"If this is alive, I don't want to see dead.\"");
-
             string responseChoice = Terminal.ReadLine();
 
             switch (responseChoice)
             {
                 case "1":
                     Terminal.WriteLine("\"Such a flirt,\" she says, but there’s warmth behind it. \"You keep that up, and I might forget why I came here.\"");
-                    Patron2GoodEnd();
-                    Terminal.WriteLine("\"Such a flirt,\" she says, but there’s warmth behind it. \"You keep that up, and I might forget why I came here.\"");
+                    Terminal.WriteLine("Press Enter to continue...");
+                    Console.ReadLine();
                     Patron2GoodEnd();
                     break;
 
@@ -655,19 +543,19 @@ namespace Travis
                 case "2":
                     Terminal.WriteLine("\"Hm... maybe. But sometimes the dead places are the ones that remember us best.\"");
                     Terminal.WriteLine("She flicks ash into a tray and looks out again, quieter now.");
-                    Patron2Drink2();
-                    Terminal.WriteLine("\"Hm... maybe. But sometimes the dead places are the ones that remember us best.\"");
-                    Terminal.WriteLine("She flicks ash into a tray and looks out again, quieter now.");
+                    Terminal.WriteLine("Press Enter to continue...");
+                    Console.ReadLine();
                     Patron2Drink2();
                     break;
 
 
                 default:
                     Terminal.WriteLine("Invalid choice. Please try again.");
+                    Terminal.WriteLine("Press Enter to continue...");
+                    Console.ReadLine();
+                    Patron2Path2();
                     break;
 
-
-                    break;
 
 
             }
@@ -677,11 +565,7 @@ namespace Travis
         {
             Terminal.WriteLine("\"Not much for talking, huh?\" she teases, exhaling smoke. \"Fine, I’ll carry the conversation.\"");
             Terminal.WriteLine("She looks out the window, voice softer. \"You ever wonder what it’s all for? The drift, the endless space?\"");
-            Terminal.WriteLine("\"Not much for talking, huh?\" she teases, exhaling smoke. \"Fine, I’ll carry the conversation.\"");
-            Terminal.WriteLine("She looks out the window, voice softer. \"You ever wonder what it’s all for? The drift, the endless space?\"");
             Terminal.WriteLine("How do you respond?");
-            Terminal.WriteLine("1. \"Maybe it’s not about the destination, but the journey.\"");
-            Terminal.WriteLine("2. \"Never cared to give it much thought.\"");
             Terminal.WriteLine("1. \"Maybe it’s not about the destination, but the journey.\"");
             Terminal.WriteLine("2. \"Never cared to give it much thought.\"");
             string responseChoice = Terminal.ReadLine();
@@ -689,38 +573,24 @@ namespace Travis
             {
                 case "1":
                     Terminal.WriteLine("\"Philosophical for a bartender,\" she says with a smirk. \"I like that.\"");
-                    Terminal.WriteLine("\"Philosophical for a bartender,\" she says with a smirk. \"I like that.\"");
+                    Terminal.WriteLine("Press Enter to continue...");
+                    Console.ReadLine();
                     patron2Reputation += 1;
                     Patron2Drink1();
                     break;
                 case "2":
                     Terminal.WriteLine("\"A cynic, huh? Well, I suppose that’s fitting for this place.\"");
                     patron2Reputation -= 1;
-                    Terminal.WriteLine("\"A cynic, huh? Well, I suppose that’s fitting for this place.\"");
-                    patron2Reputation -= 1;
+                    Terminal.WriteLine("Press Enter to continue...");
+                    Console.ReadLine();
                     Patron2BadEnd();
                     break;
                 default:
                     Terminal.WriteLine("Invalid choice. Please try again.");
+                    Terminal.WriteLine("Press Enter to continue...");
+                    Console.ReadLine();
                     break;
-
-                    break;
-
             }
-        }
-
-        public void Patron2Choice2()
-        {
-
-
-
-
-        }
-
-        public void Patron2Choice3()
-        {
-
-
         }
 
         public void Patron2Drink1()
@@ -734,22 +604,18 @@ namespace Travis
             if (drinkScore == 100)
             {
                 if (mixing.drink.Name == "Peach Margarita")
-                if (mixing.drink.Name == "Peach Margarita")
                 {
-                    Console.WriteLine("\"It's perfect. I'm learing to expect nothing less of you.\"");
                     Console.WriteLine("\"It's perfect. I'm learing to expect nothing less of you.\"");
                     patron2Reputation += 2;
                 }
                 else
                 {
                     Console.WriteLine("\"This isn't an Peach Margarita. You've got talent though.\"");
-                    Console.WriteLine("\"This isn't an Peach Margarita. You've got talent though.\"");
                     patron2Reputation += 1;
                 }
             }
             else if (drinkScore >= 60)
             {
-                if (mixing.drink.Name == "Peach Margarita")
                 if (mixing.drink.Name == "Peach Margarita")
                 {
                     Console.WriteLine("\"Good enough. You’ll improve with time.\"");
@@ -758,22 +624,18 @@ namespace Travis
                 else
                 {
                     Console.WriteLine("\"You can do a bit better then that, surely?\"");
-                    Console.WriteLine("\"You can do a bit better then that, surely?\"");
                     patron2Reputation -= 1;
                 }
             }
             else
             {
                 if (mixing.drink.Name == "Peach Margarita")
-                if (mixing.drink.Name == "Peach Margarita")
                 {
-                    Console.WriteLine("\"Disappointing.. to say the least.\"");
                     Console.WriteLine("\"Disappointing.. to say the least.\"");
                     patron2Reputation -= 1;
                 }
                 else
                 {
-                    Console.WriteLine("\"I have half a mind to charge your bar double for my performance. What kind of drink was that supposed to be?\"");
                     Console.WriteLine("\"I have half a mind to charge your bar double for my performance. What kind of drink was that supposed to be?\"");
                     patron2Reputation -= 2;
                 }
@@ -794,22 +656,18 @@ namespace Travis
             if (drinkScore == 100)
             {
                 if (mixing.drink.Name == "Pina Colada")
-                if (mixing.drink.Name == "Pina Colada")
                 {
-                    Console.WriteLine("\"You've done a wonderful job on this.\"");
                     Console.WriteLine("\"You've done a wonderful job on this.\"");
                     patron2Reputation += 2;
                 }
                 else
                 {
                     Console.WriteLine("\"This isn't a Pina Colada, but you seem to know what you're doing. I'll trust you.\"");
-                    Console.WriteLine("\"This isn't a Pina Colada, but you seem to know what you're doing. I'll trust you.\"");
                     patron2Reputation += 1;
                 }
             }
             else if (drinkScore >= 60)
             {
-                if (mixing.drink.Name == "Pina Colada")
                 if (mixing.drink.Name == "Pina Colada")
                 {
                     Console.WriteLine("\"Good enough. You’ll improve with time.\"");
@@ -818,22 +676,18 @@ namespace Travis
                 else
                 {
                     Console.WriteLine("\"This isn't a Pina Colada, nor is it good.\"");
-                    Console.WriteLine("\"This isn't a Pina Colada, nor is it good.\"");
                     patron2Reputation -= 1;
                 }
             }
             else
             {
                 if (mixing.drink.Name == "Pina Colada")
-                if (mixing.drink.Name == "Pina Colada")
                 {
-                    Console.WriteLine("\"I suppose this counts as a Pina Colada...\"");
                     Console.WriteLine("\"I suppose this counts as a Pina Colada...\"");
                     patron2Reputation -= 1;
                 }
                 else
                 {
-                    Console.WriteLine("\"Are you trying to insult me? Could you at least try to make my drink right?\"");
                     Console.WriteLine("\"Are you trying to insult me? Could you at least try to make my drink right?\"");
                     patron2Reputation -= 2;
                 }
@@ -846,16 +700,11 @@ namespace Travis
         {
             Terminal.WriteLine("She sighs, finishing her cigarette. \"Maybe some places are just meant to be forgotten.\"");
             Terminal.WriteLine("She leaves without another word.");
-            Terminal.WriteLine("She sighs, finishing her cigarette. \"Maybe some places are just meant to be forgotten.\"");
-            Terminal.WriteLine("She leaves without another word.");
             Terminal.WriteLine("Press Enter to continue...");
             patron2Left = true;
             patron2Done = true;
             patron2Reputation = 0;
-            patron2Done = true;
-            patron2Reputation = 0;
             Console.ReadLine();
-            CustomerSelection();
             CustomerSelection();
         }
 
@@ -864,19 +713,11 @@ namespace Travis
             Terminal.WriteLine("\"You're impressive, barkeep.\"");
             Terminal.WriteLine("She stands, smoothing her dress. \"Maybe this station isn’t so bad after all.\"");
             Terminal.WriteLine("\"Leave my tab open, I'll be back.\"");
-            Terminal.WriteLine("\"You're impressive, barkeep.\"");
-            Terminal.WriteLine("She stands, smoothing her dress. \"Maybe this station isn’t so bad after all.\"");
-            Terminal.WriteLine("\"Leave my tab open, I'll be back.\"");
             Terminal.WriteLine("Press Enter to continue...");
             patron2Reputation = 10;
             patron2Left = true;
             patron2Done = true;
-            patron2Reputation = 10;
-            patron2Left = true;
-            patron2Done = true;
             Console.ReadLine();
-            Patron2Ending();
-
             Patron2Ending();
 
         }
@@ -886,37 +727,30 @@ namespace Travis
             if (patron2Reputation < 0)
             {
                 Terminal.WriteLine("Lyra seems displeased with your service.");
-                Terminal.WriteLine("Lyra seems displeased with your service.");
             }
             else if (patron2Reputation == 0)
             {
-                Terminal.WriteLine("Lyra seems indifferent about your service.");
                 Terminal.WriteLine("Lyra seems indifferent about your service.");
             }
             else if (patron2Reputation > 0 && patron2Reputation <= 2)
             {
                 Terminal.WriteLine("Lyra seems satisfied with your service.");
-                Terminal.WriteLine("Lyra seems satisfied with your service.");
             }
             else if (patron2Reputation > 2)
             {
                 Terminal.WriteLine("Lyra seems very pleased with your service.");
-                Terminal.WriteLine("Lyra seems very pleased with your service.");
             }
             else
             {
-                Terminal.WriteLine("Error in calculating Lyra's reaction.");
                 Terminal.WriteLine("Error in calculating Lyra's reaction.");
             }
             patron2Tip = patron2Reputation * 5;
             if (patron2Tip < 0)
                 patron2Tip = 0;
             Terminal.WriteLine("Lyra leaves you a tip of " + patron2Tip + " credits.");
-            Terminal.WriteLine("Lyra leaves you a tip of " + patron2Tip + " credits.");
             Terminal.WriteLine("Press Enter to continue...");
             Console.ReadLine();
             patron2Served = true;
-            patron2Done = true;
             patron2Done = true;
             CustomerSelection();
         }
@@ -966,7 +800,6 @@ namespace Travis
         {
             Terminal.WriteLine("Kael leans closer, voice lowering.");
             Terminal.WriteLine("\"You ever heard of a smuggler called Atlas? Callsign rings bells here?\"");
-            Terminal.WriteLine("\"You ever heard of a smuggler called Atlas? Callsign rings bells here?\"");
             Terminal.WriteLine("1. \"Can’t say I have.\"");
             Terminal.WriteLine("2. \"Might’ve seen someone sketchy — depends who’s asking.\"");
 
@@ -980,7 +813,6 @@ namespace Travis
                 case "2":
                     Terminal.WriteLine("\"You’re sharp. That’s good. I watch the sharp ones.\"");
                     patron3Reputation += 1;
-                    Patron3Choice1();
                     Patron3Choice1();
                     break;
                 default:
@@ -1063,26 +895,6 @@ namespace Travis
             }
         }
 
-        public void Patron3Choice1()
-        {
-            Terminal.WriteLine("\"An off duty cop is still a cop. You seen this Atlas fellow or not?\"");
-            Terminal.WriteLine("1. \"Nope, never heard of him.\" (Lie)");
-            Terminal.WriteLine("2. \"That cloaked figure in the corner....\" (Truth)");
-            string responseChoice = Terminal.ReadLine();
-            switch (responseChoice)
-            {
-                case "1":
-                    Terminal.WriteLine("\"Sure you haven’t. I’ll be watching you.\"");
-                    patron3Reputation -= 2;
-                    Patron3Drink1();
-                    break;
-                case "2":
-                    Terminal.WriteLine("\"Hmm. Interesting. Thanks for the tip.\"");
-                    patron3Reputation += 2;
-                    Patron3ArrestEnding();
-                    break;
-            }
-        }
 
         public void Patron3Drink1()
         {
@@ -1158,43 +970,32 @@ namespace Travis
         public void Patron3Ending()
         {
             if (patron4Reputation < 0)
-            if (patron4Reputation < 0)
             {
-                Terminal.WriteLine("Kael seems displeased with your service.");
                 Terminal.WriteLine("Kael seems displeased with your service.");
             }
             else if (patron4Reputation == 0)
-            else if (patron4Reputation == 0)
             {
-                Terminal.WriteLine("Kael seems indifferent about your service.");
                 Terminal.WriteLine("Kael seems indifferent about your service.");
             }
             else if (patron4Reputation > 0 && patron4Reputation <= 2)
-            else if (patron4Reputation > 0 && patron4Reputation <= 2)
             {
-                Terminal.WriteLine("Kael seems satisfied with your service.");
                 Terminal.WriteLine("Kael seems satisfied with your service.");
             }
             else if (patron4Reputation > 2)
-            else if (patron4Reputation > 2)
             {
-                Terminal.WriteLine("Kael seems very pleased with your service.");
                 Terminal.WriteLine("Kael seems very pleased with your service.");
             }
             else
             {
-                Terminal.WriteLine("Error in calculating Patron4's reaction.");
                 Terminal.WriteLine("Error in calculating Patron4's reaction.");
             }
             patron3Tip = patron3Reputation * 5;
             if (patron3Tip < 0)
                 patron3Tip = 0;
             Terminal.WriteLine("Atlas leaves you a tip of " + patron3Tip + " credits.");
-            Terminal.WriteLine("Atlas leaves you a tip of " + patron3Tip + " credits.");
             Terminal.WriteLine("Press Enter to continue...");
             Console.ReadLine();
             patron3Served = true;
-            patron3Done = true;
             patron3Done = true;
             CustomerSelection();
         }
@@ -1215,24 +1016,8 @@ namespace Travis
             Patron3Ending();
         }
 
-        public void Patron3ArrestEnding()
-        {
-            Terminal.WriteLine("Kael's eyes narrow. He steals a glance at the customer in the corner.");
-            Terminal.WriteLine("Atlas wastes no time when they notice, and they smoothly slip out of the building.");
-            Terminal.WriteLine("Kael sighs, shaking his head. \"Damn smuggler slipped away again. A tip for the tip, bartender.\"");
-            Terminal.WriteLine("He leaves you a tip and exits the bar.");
-            Terminal.WriteLine("Press Enter to continue...");
-            patron3Left = true;
-            patron4Left = true;
-            patron3Done = true;
-            patron4Done = true;
-            patron3Reputation = 5;
-            Console.ReadLine();
-            Patron3Ending();
-        }
 
         //====================================================================================================
-        //Patron 4 - Atlas, Androgynous Robot Smuggler
         //Patron 4 - Atlas, Androgynous Robot Smuggler
         //====================================================================================================
 
@@ -1303,7 +1088,7 @@ namespace Travis
             Terminal.WriteLine("\"So, tell me barkeep. Why are you really here?\"");
             Terminal.WriteLine("How do you respond?");
             Terminal.WriteLine("1. \"I aspire to be more than a barkeep in a dump like this.\"");
-            Terminal.WriteLine("2. \"Recount some of the hardships that made you wind up here.\"");
+            Terminal.WriteLine("2. (Recount some of the hardships that made you wind up here.)");
             string responseChoice = Terminal.ReadLine();
 
             switch (responseChoice)
@@ -1330,8 +1115,6 @@ namespace Travis
             Terminal.WriteLine("\"I'm here looking for tips on my lost partner. They got stranded on a supply run to a nearby outpost.\"");
             Terminal.WriteLine("I've told you my story, care to return the favour?");
             Terminal.WriteLine("How do you respond?");
-            Terminal.WriteLine("1. Tell him some of your struggles.");
-            Terminal.WriteLine("2. Recall the rumour you overheard patrons in the bar discussing earlier about a distress beacon.");
             Terminal.WriteLine("1. Tell him some of your struggles.");
             Terminal.WriteLine("2. Recall the rumour you overheard patrons in the bar discussing earlier about a distress beacon.");
             string responseChoice = Terminal.ReadLine();
@@ -1375,9 +1158,8 @@ namespace Travis
         public void Patron4Choice2()
         {
             Terminal.WriteLine("You feel you can trust this stranger. You can tell them your stories or cut the conversation a bit short.");
-            Terminal.WriteLine("You feel you can trust this stranger. You can tell them your stories or cut the conversation a bit short.");
-            Terminal.WriteLine("1. Tell your stories.");
-            Terminal.WriteLine("2. Cut the conversation short.");
+            Terminal.WriteLine("1. (Tell your stories.)");
+            Terminal.WriteLine("2. (Cut the conversation short.)");
             string responseChoice = Terminal.ReadLine();
             switch (responseChoice)
             {
@@ -1401,8 +1183,6 @@ namespace Travis
         {
             Terminal.WriteLine("Have you seriously heard something about a distress beacon?");
             Terminal.WriteLine("How do you respond?");
-            Terminal.WriteLine("1. \"Yeah, I heard some patrons talking about it earlier. \" (Share the details extensively)");
-            Terminal.WriteLine("2. \"Yeah, I... think... . \" (Keep it vague)");
             Terminal.WriteLine("1. \"Yeah, I heard some patrons talking about it earlier. \" (Share the details extensively)");
             Terminal.WriteLine("2. \"Yeah, I... think... . \" (Keep it vague)");
             string responseChoice = Terminal.ReadLine();
@@ -1529,32 +1309,22 @@ namespace Travis
         public void Patron4BadEnd()
         {
             Terminal.WriteLine("The figure stands, revealing battle scarred metallic face. \"Some truths are better left unknown.\"");
-            Terminal.WriteLine("The figure stands, revealing battle scarred metallic face. \"Some truths are better left unknown.\"");
             Terminal.WriteLine("Before you can react, they vanish into the shadows, leaving you with a chilling silence.");
             Terminal.WriteLine("Press Enter to continue...");
             patron4Left = true;
             patron4Done = true;
-
-            patron4Left = true;
-            patron4Done = true;
-
             Console.ReadLine();
         }
 
         public void Patron4GoodEnd()
         {
             Terminal.WriteLine("The figure looks up, and a display panel lights up in the place of their eyes. \"You may have just saved a life tonight.\"");
-            Terminal.WriteLine("The figure looks up, and a display panel lights up in the place of their eyes. \"You may have just saved a life tonight.\"");
             Terminal.WriteLine("They stand, leaving a small pouch of credits on the bar. \"For your kindness. Farewell, " + playerName + ".\"");
             Terminal.WriteLine("Press Enter to continue...");
             patron4Reputation = 10;
             patron4Left = true;
             patron4Done = true;
-            patron4Reputation = 10;
-            patron4Left = true;
-            patron4Done = true;
             Console.ReadLine();
-            Patron4Ending();
             Patron4Ending();
         }
 
@@ -1563,21 +1333,17 @@ namespace Travis
             if (patron4Reputation < 0)
             {
                 Terminal.WriteLine("Atlas seems displeased with your service.");
-                Terminal.WriteLine("Atlas seems displeased with your service.");
             }
             else if (patron4Reputation == 0)
             {
-                Terminal.WriteLine("Atlas seems indifferent about your service.");
                 Terminal.WriteLine("Atlas seems indifferent about your service.");
             }
             else if (patron4Reputation > 0 && patron4Reputation <= 2)
             {
                 Terminal.WriteLine("Atlas seems satisfied with your service.");
-                Terminal.WriteLine("Atlas seems satisfied with your service.");
             }
             else if (patron4Reputation > 2)
             {
-                Terminal.WriteLine("Atlas seems very pleased with your service.");
                 Terminal.WriteLine("Atlas seems very pleased with your service.");
             }
             else
@@ -1588,11 +1354,9 @@ namespace Travis
             if (patron4Tip < 0)
                 patron4Tip = 0;
             Terminal.WriteLine("Atlas leaves you a tip of " + patron4Tip + " credits.");
-            Terminal.WriteLine("Atlas leaves you a tip of " + patron4Tip + " credits.");
             Terminal.WriteLine("Press Enter to continue...");
             Console.ReadLine();
             patron4Served = true;
-            patron4Done = true;
             patron4Done = true;
             CustomerSelection();
         }
